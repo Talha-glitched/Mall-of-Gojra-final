@@ -1,15 +1,5 @@
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import front1 from "@/Assets/Front View 1.png";
-import front2 from "@/Assets/Front View 2.png";
-import front3 from "@/Assets/Front View 3.png";
-import front4 from "@/Assets/Front View 4.png";
-import front5 from "@/Assets/Front View 5.png";
-import top1 from "@/Assets/Top View 1.png";
-import top2 from "@/Assets/Top View 2.png";
-import top3 from "@/Assets/Top View 3.png";
-import top4 from "@/Assets/Top View 4.png";
-import top5 from "@/Assets/Top View 5.png";
 
 const floors = [
   { name: "Lower Ground", area: "4,058.75", dimensions: "94'-5\" × 43'", height: "10 ft" },
@@ -24,24 +14,24 @@ export default function FloorPlanSection() {
   const [viewMode, setViewMode] = useState<"front" | "top">("front");
 
   const imageByFloorFront = useMemo(() => ({
-    "Lower Ground": front1,
-    "Ground Floor": front2,
-    "First Floor": front3,
-    "Second Floor": front4,
-    "Roof Top": front5,
+    "Lower Ground": "/Front View 1.png",
+    "Ground Floor": "/Front View 2.png",
+    "First Floor": "/Front View 3.png",
+    "Second Floor": "/Front View 4.png",
+    "Roof Top": "/Front View 5.png",
   } as Record<string, string>), []);
 
   const imageByFloorTop = useMemo(() => ({
-    "Lower Ground": top5,
-    "Ground Floor": top4,
-    "First Floor": top3,
-    "Second Floor": top2,
-    "Roof Top": top1,
+    "Lower Ground": "/Top View 5.png",
+    "Ground Floor": "/Top View 4.png",
+    "First Floor": "/Top View 3.png",
+    "Second Floor": "/Top View 2.png",
+    "Roof Top": "/Top View 1.png",
   } as Record<string, string>), []);
 
   const activeImage = useMemo(() => {
     const map = viewMode === "front" ? imageByFloorFront : imageByFloorTop;
-    const fallback = viewMode === "front" ? front1 : top1;
+    const fallback = map[floors[0].name];
     return lastHovered ? map[lastHovered] : fallback;
   }, [viewMode, lastHovered, imageByFloorFront, imageByFloorTop]);
 
@@ -86,7 +76,7 @@ export default function FloorPlanSection() {
 
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           {/* Left: floor list (narrower) */}
-          <div className="w-full max-w-xl mx-auto lg:mx-0 space-y-4">
+          <div className="w-full max-w-lg mx-auto lg:mx-0 space-y-4">
             {floors.map((floor, index) => (
               <motion.div
                 key={index}
@@ -94,29 +84,21 @@ export default function FloorPlanSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className={`backdrop-blur-xl border rounded-2xl p-5 transition-all cursor-pointer ${lastHovered === floor.name ? "bg-white/15 border-yellow-400/40" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
+                className={`backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer ${lastHovered === floor.name ? "bg-white/15 border-yellow-400/40" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
                 onMouseEnter={() => setLastHovered(floor.name)}
               >
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 items-center">
                   <div>
-                    <div className="text-yellow-400 font-semibold mb-1">{floor.name}</div>
-                    <div className="text-xl font-bold text-white">{floor.area} sq ft</div>
+                    <div className="text-yellow-400 font-semibold mb-1 text-sm">{floor.name}</div>
+                    <div className="text-lg font-bold text-white">{floor.area} sq ft</div>
                   </div>
-                  <div className="text-white/70">
-                    <div className="text-xs text-white/50 mb-1">Dimensions</div>
+                  <div className="text-white/70 text-sm">
+                    <div className="text-[11px] text-white/50 mb-1 uppercase tracking-wide">Dimensions</div>
                     <div className="font-semibold">{floor.dimensions}</div>
                   </div>
-                  <div className="text-white/70">
-                    <div className="text-xs text-white/50 mb-1">Ceiling Height</div>
+                  <div className="text-white/70 text-sm">
+                    <div className="text-[11px] text-white/50 mb-1 uppercase tracking-wide">Ceiling Height</div>
                     <div className="font-semibold">{floor.height}</div>
-                  </div>
-                  <div className="flex justify-end">
-                    <div className="w-full max-w-[160px] h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-yellow-400 to-yellow-600"
-                        style={{ width: `${(parseFloat(floor.area.replace(/,/g, "")) / 5876.88) * 100}%` }}
-                      />
-                    </div>
                   </div>
                 </div>
               </motion.div>
