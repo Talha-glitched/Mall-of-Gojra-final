@@ -2,11 +2,19 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const scrollToSection = (id: string) => {
+    if (location.pathname !== "/") {
+      window.location.href = `/#${id}`;
+      setIsOpen(false);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -27,7 +35,13 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             className="flex items-center gap-3"
           >
-            <img src="https://harmless-tapir-303.convex.cloud/api/storage/3ed0ac66-f978-4944-ae20-157f8694aa24" alt="Mall of Gojra" className="h-12" />
+            <Link to="/" className="inline-flex items-center">
+              <img
+                src="https://harmless-tapir-303.convex.cloud/api/storage/3ed0ac66-f978-4944-ae20-157f8694aa24"
+                alt="Mall of Gojra"
+                className="h-14 sm:h-16"
+              />
+            </Link>
           </motion.div>
 
           {/* Desktop Menu */}
@@ -50,6 +64,18 @@ export default function Navbar() {
             >
               Location
             </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-white/80 hover:text-yellow-400 transition-colors"
+            >
+              Contact
+            </button>
+            <Link
+              to="/vision"
+              className="text-white/80 hover:text-yellow-400 transition-colors"
+            >
+              Vision
+            </Link>
             <Button
               onClick={() => scrollToSection("contact")}
               className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold hover:from-yellow-500 hover:to-yellow-700"
@@ -92,6 +118,19 @@ export default function Navbar() {
             >
               Location
             </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+            >
+              Contact
+            </button>
+            <Link
+              to="/vision"
+              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Vision
+            </Link>
             <Button
               onClick={() => scrollToSection("contact")}
               className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold"

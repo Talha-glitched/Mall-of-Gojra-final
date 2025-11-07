@@ -40,7 +40,7 @@ export default function HeroSection() {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Secure Your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+              <span className="text-yellow-400">
                 Flagship Outlet
               </span>{" "}
               in Gojra's Prime Commercial Plaza
@@ -59,23 +59,6 @@ export default function HeroSection() {
                 Get Brochure & Schedule Visit
                 <ArrowRight className="ml-2" />
               </Button>
-            </div>
-
-            <div className="flex items-center gap-8 pt-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">24,710</div>
-                <div className="text-sm text-white/60">sq ft Total Area</div>
-              </div>
-              <div className="h-12 w-px bg-white/20" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">108 ft</div>
-                <div className="text-sm text-white/60">Frontage</div>
-              </div>
-              <div className="h-12 w-px bg-white/20" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">22</div>
-                <div className="text-sm text-white/60">Car Parking</div>
-              </div>
             </div>
           </motion.div>
 
@@ -97,6 +80,36 @@ export default function HeroSection() {
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-12 flex flex-wrap items-center justify-center gap-8"
+        >
+          <div className="text-center">
+            <div className="text-3xl font-bold text-yellow-400">24,710</div>
+            <div className="text-sm text-white/60">sq ft Total Area</div>
+          </div>
+          <div className="h-12 w-px bg-white/20 hidden sm:block" />
+          <div className="text-center">
+            <div className="text-3xl font-bold text-yellow-400">108 ft</div>
+            <div className="text-sm text-white/60">Frontage</div>
+          </div>
+          <div className="h-12 w-px bg-white/20 hidden sm:block" />
+          <div className="text-center">
+            <div className="text-3xl font-bold text-yellow-400">22</div>
+            <div className="text-sm text-white/60">Car Parking</div>
+
+          </div>
+          <div className="h-12 w-px bg-white/20 hidden sm:block" />
+          <div className="text-center">
+            <div className="text-3xl font-bold text-yellow-400">Dual access  </div>
+            <div className="text-sm text-white/60">Front & Back</div>
+
+          </div>
+
+        </motion.div>
       </div>
     </section>
   );

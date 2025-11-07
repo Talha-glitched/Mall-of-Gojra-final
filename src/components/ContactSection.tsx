@@ -52,7 +52,7 @@ export default function ContactSection() {
           <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Ready to Expand{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+              <span className="text-yellow-400">
                 Without the Pain
               </span>{" "}
               of Construction?

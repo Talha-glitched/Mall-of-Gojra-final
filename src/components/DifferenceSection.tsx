@@ -17,7 +17,7 @@ export default function DifferenceSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             Why This is{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+            <span className="text-yellow-400">
               Different
             </span>
           </h2>

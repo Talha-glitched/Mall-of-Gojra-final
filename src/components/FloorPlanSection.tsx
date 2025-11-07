@@ -50,7 +50,7 @@ export default function FloorPlanSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Largest Commercial Space{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+            <span className="text-yellow-400">
               Under One Roof
             </span>
           </h2>

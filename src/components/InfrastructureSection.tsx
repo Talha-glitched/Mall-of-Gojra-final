@@ -44,7 +44,7 @@ export default function InfrastructureSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             World-Class{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+            <span className="text-yellow-400">
               Infrastructure
             </span>
           </h2>

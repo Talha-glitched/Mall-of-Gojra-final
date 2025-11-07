@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import "./index.css";
 import Landing from "./pages/Landing.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import VisionPage from "./pages/Vision.tsx";
 import "./types/global.d.ts";
 
 function RouteSyncer() {
@@ -43,6 +44,7 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} /> {/* TODO: change redirect after auth to correct page */}
+          <Route path="/vision" element={<VisionPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
