@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const floors = [
   { name: "Lower Ground", area: "4,058.75", dimensions: "94'-5\" × 43'", height: "10 ft" },
@@ -28,6 +28,18 @@ export default function FloorPlanSection() {
     "Second Floor": "/Top View 2.png",
     "Roof Top": "/Top View 1.png",
   } as Record<string, string>), []);
+
+  const allImageSources = useMemo(
+    () => [...Object.values(imageByFloorFront), ...Object.values(imageByFloorTop)],
+    [imageByFloorFront, imageByFloorTop],
+  );
+
+  useEffect(() => {
+    allImageSources.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [allImageSources]);
 
   const activeImage = useMemo(() => {
     const map = viewMode === "front" ? imageByFloorFront : imageByFloorTop;
