@@ -81,16 +81,38 @@ export default function FloorPlanSection() {
             }}
             className="mt-8 mb-6 overflow-hidden"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl max-w-5xl w-full mx-auto">
+            <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl max-w-6xl w-full mx-auto h-auto md:h-[420px]">
               <img
                 src={nightshotImg}
                 alt="Mall Interior"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
-
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 p-6 backdrop-blur-xl bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 border border-yellow-400/30 rounded-2xl"
+          >
+            <div className="flex items-center justify-center gap-8 flex-wrap">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[var(--brand-gold)]">108 ft</div>
+                <div className="text-sm text-white/70">Frontage Width</div>
+              </div>
+              <div className="h-12 w-px bg-white/20 hidden sm:block" />
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[var(--brand-gold)]">Open Plan</div>
+                <div className="text-sm text-white/70">Customizable Layout</div>
+              </div>
+              <div className="h-12 w-px bg-white/20 hidden sm:block" />
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[var(--brand-gold)]">Dual Access</div>
+                <div className="text-sm text-white/70">Front & Back Entry</div>
+              </div>
+            </div>
+          </motion.div>
           <div className="mt-6 inline-flex items-center rounded-xl border border-white/10 bg-white/5 p-1">
             <button
               type="button"
@@ -164,29 +186,7 @@ export default function FloorPlanSection() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-8 p-6 backdrop-blur-xl bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 border border-yellow-400/30 rounded-2xl"
-        >
-          <div className="flex items-center justify-center gap-8 flex-wrap">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[var(--brand-gold)]">108 ft</div>
-              <div className="text-sm text-white/70">Frontage Width</div>
-            </div>
-            <div className="h-12 w-px bg-white/20 hidden sm:block" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[var(--brand-gold)]">Open Plan</div>
-              <div className="text-sm text-white/70">Customizable Layout</div>
-            </div>
-            <div className="h-12 w-px bg-white/20 hidden sm:block" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[var(--brand-gold)]">Dual Access</div>
-              <div className="text-sm text-white/70">Front & Back Entry</div>
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );

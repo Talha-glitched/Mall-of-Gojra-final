@@ -50,21 +50,28 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 backdrop-blur-sm border border-yellow-400/30"
+              className="inline-flex items-center px-5 py-2 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
             >
               <span className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Secure Your{" "}
-              <span className="text-[var(--brand-gold)]">
-                Flagship Outlet
+              <span className="sm:whitespace-nowrap">
+                Secure Your{" "}
+                <span className="text-[var(--brand-gold)]">
+                  Flagship Outlet
+                </span>
               </span>{" "}
-              in Gojra's Prime Commercial Plaza
+              <span className="sm:whitespace-nowrap">
+                in Gojra's Prime Commercial Plaza
+              </span>
             </h1>
 
-            <p className="text-xl text-white/70 leading-relaxed">
-              Move in. Stand out. Lead the market — with a metro-grade, ready-to-operate retail space designed for serious brands.
+            <p className="text-white/70 leading-relaxed text-[1.6rem] sm:text-[1.8rem]">
+              <span className="text-[var(--brand-gold)] font-semibold">
+                Move in. Stand out. Lead the market with
+              </span>
+              <br /> a metro-grade, ready-to-operate retail space <br /> designed for serious brands.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
