@@ -1,6 +1,15 @@
 /* DO NOT CHANGE */
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@font-face {
+  font-family: "Top Luxury";
+  src: url("./Assets/top-luxury/TOPLUXURY.otf") format("opentype"),
+    url("./Assets/top-luxury/TOPLUXURY.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 400 700;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /* DO NOT CHANGE */
@@ -45,7 +54,7 @@
 /* CHANGE VALUES FOR THEME - Black & Gold Glassmorphism */
 :root {
   --radius: 1rem;
-  --brand-gold: #DBB42C;
+  --brand-gold: #bc902f;
   --brand-gold-rgb: 208, 177, 112;
   --background: oklch(0.1 0 0);
   --foreground: oklch(0.98 0 0);
@@ -121,6 +130,30 @@
 
   body {
     @apply bg-background text-foreground;
+    font-weight: 400;
+  }
+
+  p {
+    font-weight: 300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Top Luxury", "Playfair Display", serif;
+    font-weight: 600;
+  }
+
+  h1.font-bold,
+  h2.font-bold,
+  h3.font-bold,
+  h4.font-bold,
+  h5.font-bold,
+  h6.font-bold {
+    font-weight: 600;
   }
 
   button:not([disabled]),
