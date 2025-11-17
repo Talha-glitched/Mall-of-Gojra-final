@@ -26,7 +26,7 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/30 border-b border-white/10"
+      className="fixed top-0 left-0 right-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -48,31 +48,31 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6">
             <button
               onClick={() => scrollToSection("features")}
-              className="text-white/80 hover:text-yellow-400 transition-colors"
+              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("infrastructure")}
-              className="text-white/80 hover:text-yellow-400 transition-colors"
+              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Infrastructure
             </button>
             <button
               onClick={() => scrollToSection("location")}
-              className="text-white/80 hover:text-yellow-400 transition-colors"
+              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Location
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-white/80 hover:text-yellow-400 transition-colors"
+              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Contact
             </button>
             <Link
               to="/vision"
-              className="text-white/80 hover:text-yellow-400 transition-colors"
+              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Vision
             </Link>
@@ -102,31 +102,31 @@ export default function Navbar() {
           >
             <button
               onClick={() => scrollToSection("features")}
-              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("infrastructure")}
-              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Infrastructure
             </button>
             <button
               onClick={() => scrollToSection("location")}
-              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Location
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Contact
             </button>
             <Link
               to="/vision"
-              className="block w-full text-left text-white/80 hover:text-yellow-400 transition-colors py-2"
+              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
               onClick={() => setIsOpen(false)}
             >
               Vision

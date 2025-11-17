@@ -13,7 +13,7 @@ export default function LocationSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Strategically{" "}
-            <span className="text-yellow-400">
+            <span className="text-[var(--brand-gold)]">
               Located
             </span>
           </h2>
@@ -62,13 +62,16 @@ export default function LocationSection() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 h-[400px] flex items-center justify-center"
+            className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]"
           >
-            <div className="text-center space-y-4">
-              <div className="text-6xl">🗺️</div>
-              <p className="text-white/70 text-lg">Interactive Map Coming Soon</p>
-              <p className="text-white/50 text-sm">Main Pensara Road, Gojra</p>
-            </div>
+            <iframe
+              title="Mall of Gojra Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3414.2989765174516!2d72.6837145756678!3d31.156977774382423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39230193665a1ee3%3A0x630cf172e8d78c89!2sMall%20of%20Gojra!5e0!3m2!1sen!2sae!4v1763386152044!5m2!1sen!2sae"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-[400px] border-0"
+            />
           </motion.div>
         </div>
       </div>

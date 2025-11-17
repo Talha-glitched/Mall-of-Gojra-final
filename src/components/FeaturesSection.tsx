@@ -52,7 +52,7 @@ export default function FeaturesSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Gojra's Most Visible{" "}
-            <span className="text-yellow-400">
+            <span className="text-[var(--brand-gold)]">
               Commercial Landmark
             </span>
           </h2>

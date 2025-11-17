@@ -44,7 +44,7 @@ export default function InfrastructureSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             World-Class{" "}
-            <span className="text-yellow-400">
+            <span className="text-[var(--brand-gold)]">
               Infrastructure
             </span>
           </h2>
@@ -58,7 +58,7 @@ export default function InfrastructureSection() {
             viewport={{ once: true }}
             className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-yellow-400 mb-6">🏗️ Infrastructure</h3>
+            <h3 className="text-2xl font-bold text-[var(--brand-gold)] mb-6">🏗️ Infrastructure</h3>
             <ul className="space-y-4">
               {infrastructure.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -77,7 +77,7 @@ export default function InfrastructureSection() {
             transition={{ delay: 0.1 }}
             className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-yellow-400 mb-6">⚡ Power & Connectivity</h3>
+            <h3 className="text-2xl font-bold text-[var(--brand-gold)] mb-6">⚡ Power & Connectivity</h3>
             <ul className="space-y-4">
               {power.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -96,7 +96,7 @@ export default function InfrastructureSection() {
             transition={{ delay: 0.2 }}
             className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-yellow-400 mb-6">🔐 Safety & Compliance</h3>
+            <h3 className="text-2xl font-bold text-[var(--brand-gold)] mb-6">🔐 Safety & Compliance</h3>
             <ul className="space-y-4">
               {safety.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">

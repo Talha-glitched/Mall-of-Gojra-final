@@ -79,12 +79,12 @@ export default function GallerySection() {
           viewport={{ once: true }}
           className="mb-14 flex flex-col items-center gap-4 text-center"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400/80">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[rgba(var(--brand-gold-rgb),0.8)]">
             Visual Journey
           </p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white">
             See The Mall
-            <span className="text-yellow-400"> Up Close</span>
+            <span className="text-[var(--brand-gold)]"> Up Close</span>
           </h2>
           <p className="max-w-2xl text-lg text-white/70">
             Architectural renders showcasing every angle — from the grand entrance to the illuminated evening ambience.

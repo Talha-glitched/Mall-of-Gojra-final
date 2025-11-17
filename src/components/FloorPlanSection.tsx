@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import nightshotImg from "../Assets/front_nightshot.jpg";
 
 const floors = [
   { name: "Lower Ground", area: "4,058.75", dimensions: "94'-5\" × 43'", height: "10 ft" },
@@ -62,12 +63,34 @@ export default function FloorPlanSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Largest Commercial Space{" "}
-            <span className="text-yellow-400">
+            <span className="text-[var(--brand-gold)]">
               Under One Roof
             </span>
           </h2>
           <p className="text-xl text-white/70">Total Built-up Area: 24,710.15 sq ft</p>
           <p className="text-lg text-white/60">Usable Commercial Area: 18,833 sq ft</p>
+
+          {/* Scroll-reveal image */}
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{
+              duration: 0.8,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+            className="mt-8 mb-6 overflow-hidden"
+          >
+            <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl max-w-3xl mx-auto">
+              <img
+                src={nightshotImg}
+                alt="Mall Interior"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
+
           <div className="mt-6 inline-flex items-center rounded-xl border border-white/10 bg-white/5 p-1">
             <button
               type="button"
@@ -101,7 +124,7 @@ export default function FloorPlanSection() {
               >
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 items-center">
                   <div>
-                    <div className="text-yellow-400 font-semibold mb-1 text-sm">{floor.name}</div>
+                    <div className="text-[var(--brand-gold)] font-semibold mb-1 text-sm">{floor.name}</div>
                     <div className="text-lg font-bold text-white">{floor.area} sq ft</div>
                   </div>
                   <div className="text-white/70 text-sm">
@@ -149,17 +172,17 @@ export default function FloorPlanSection() {
         >
           <div className="flex items-center justify-center gap-8 flex-wrap">
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">108 ft</div>
+              <div className="text-3xl font-bold text-[var(--brand-gold)]">108 ft</div>
               <div className="text-sm text-white/70">Frontage Width</div>
             </div>
             <div className="h-12 w-px bg-white/20 hidden sm:block" />
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">Open Plan</div>
+              <div className="text-3xl font-bold text-[var(--brand-gold)]">Open Plan</div>
               <div className="text-sm text-white/70">Customizable Layout</div>
             </div>
             <div className="h-12 w-px bg-white/20 hidden sm:block" />
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">Dual Access</div>
+              <div className="text-3xl font-bold text-[var(--brand-gold)]">Dual Access</div>
               <div className="text-sm text-white/70">Front & Back Entry</div>
             </div>
           </div>

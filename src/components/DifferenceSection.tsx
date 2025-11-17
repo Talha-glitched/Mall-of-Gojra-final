@@ -17,7 +17,7 @@ export default function DifferenceSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             Why This is{" "}
-            <span className="text-yellow-400">
+            <span className="text-[var(--brand-gold)]">
               Different
             </span>
           </h2>

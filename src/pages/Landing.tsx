@@ -21,7 +21,7 @@ export default function Landing() {
       <IdealForSection />
       <InfrastructureSection />
       <DifferenceSection />
-      
+
       <LocationSection />
       <ContactSection />
       <Footer />

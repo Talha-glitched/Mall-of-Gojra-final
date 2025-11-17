@@ -26,7 +26,7 @@ export default function IdealForSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Ideal For{" "}
-            <span className="text-yellow-400">
+            <span className="text-[var(--brand-gold)]">
               High-Growth Brands
             </span>
           </h2>

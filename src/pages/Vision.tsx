@@ -31,7 +31,7 @@ export default function VisionPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400/80">
+              <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-[rgba(var(--brand-gold-rgb),0.8)]">
                 <Sparkles size={18} />
                 Purpose Driven Development
               </p>
@@ -63,7 +63,7 @@ export default function VisionPage() {
               custom={0}
               className="rounded-[36px] border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-10 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
             >
-              <div className="flex items-center gap-3 text-yellow-300/90">
+              <div className="flex items-center gap-3 text-[rgba(var(--brand-gold-rgb),0.9)]">
                 <Trophy className="h-5 w-5" />
                 <span className="text-sm font-semibold tracking-[0.25em] uppercase">Why It Exists</span>
               </div>
@@ -73,15 +73,15 @@ export default function VisionPage() {
               </p>
               <ul className="mt-6 space-y-3 text-white/70">
                 <li className="flex gap-2 text-sm">
-                  <span className="text-yellow-300">•</span>
+                  <span className="text-[var(--brand-gold)]">•</span>
                   Flagship-grade retail, surrounded by the city’s highest footfall.
                 </li>
                 <li className="flex gap-2 text-sm">
-                  <span className="text-yellow-300">•</span>
+                  <span className="text-[var(--brand-gold)]">•</span>
                   Architecture that signals ambition and invites premium brands.
                 </li>
                 <li className="flex gap-2 text-sm">
-                  <span className="text-yellow-300">•</span>
+                  <span className="text-[var(--brand-gold)]">•</span>
                   Built with a promise of longevity, integrity, and partnership.
                 </li>
               </ul>
@@ -99,7 +99,7 @@ export default function VisionPage() {
               custom={0}
               className="rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
             >
-              <div className="flex items-center gap-3 text-yellow-300/90">
+              <div className="flex items-center gap-3 text-[rgba(var(--brand-gold-rgb),0.9)]">
                 <Target className="h-5 w-5" />
                 <span className="text-sm font-semibold tracking-[0.25em] uppercase">Vision</span>
               </div>
@@ -117,7 +117,7 @@ export default function VisionPage() {
               custom={1}
               className="rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
             >
-              <div className="flex items-center gap-3 text-yellow-300/90">
+              <div className="flex items-center gap-3 text-[rgba(var(--brand-gold-rgb),0.9)]">
                 <TrendingUp className="h-5 w-5" />
                 <span className="text-sm font-semibold tracking-[0.25em] uppercase">Mission</span>
               </div>
@@ -138,7 +138,7 @@ export default function VisionPage() {
               <p className="text-lg text-white/85 leading-relaxed">
                 Mall of Gojra is how we signal that Gojra’s future is worth investing in — a platform where legacy and modern ambition meet.
               </p>
-              <p className="mt-4 text-sm uppercase tracking-[0.3em] text-yellow-200/80">Lead Without Compromise</p>
+              <p className="mt-4 text-sm uppercase tracking-[0.3em] text-[rgba(var(--brand-gold-rgb),0.8)]">Lead Without Compromise</p>
             </motion.div>
           </div>
         </section>
