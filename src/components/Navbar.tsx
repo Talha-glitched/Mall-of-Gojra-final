@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router";
+import websiteLogo from "@/Assets/Website-Logo.gif";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,9 +38,10 @@ export default function Navbar() {
           >
             <Link to="/" className="inline-flex items-center">
               <img
-                src="https://harmless-tapir-303.convex.cloud/api/storage/3ed0ac66-f978-4944-ae20-157f8694aa24"
+                src={websiteLogo}
                 alt="Mall of Gojra"
-                className="h-14 sm:h-16"
+                className="h-16 sm:h-20 w-auto"
+                style={{ width: "60%", height: "auto" }}
               />
             </Link>
           </motion.div>
