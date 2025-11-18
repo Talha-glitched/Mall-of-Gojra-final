@@ -80,7 +80,7 @@ export default function Navbar() {
             </Link>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold hover:from-yellow-500 hover:to-yellow-700"
+              className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
             >
               Get Brochure
             </Button>
@@ -135,7 +135,7 @@ export default function Navbar() {
             </Link>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold"
+              className="w-full bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
             >
               Get Brochure
             </Button>

@@ -81,11 +81,11 @@ export default function FloorPlanSection() {
             }}
             className="mt-8 mb-6 overflow-hidden"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl max-w-6xl w-full mx-auto h-auto md:h-[420px]">
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl h-auto md:h-[420px]">
               <img
                 src={nightshotImg}
                 alt="Mall Interior"
-                className="w-full h-full object-cover"
+                className="block w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>

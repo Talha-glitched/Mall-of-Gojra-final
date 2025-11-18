@@ -78,7 +78,7 @@ export default function HeroSection() {
               <Button
                 onClick={scrollToContact}
                 size="lg"
-                className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-8 py-6 hover:from-yellow-500 hover:to-yellow-700 shadow-lg shadow-yellow-500/50 cursor-pointer"
+                className="bg-[var(--brand-gold)] text-black font-bold text-lg px-8 py-6 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] shadow-lg shadow-yellow-500/50 cursor-pointer"
               >
                 Get Brochure & Schedule Visit
                 <ArrowRight className="ml-2" />

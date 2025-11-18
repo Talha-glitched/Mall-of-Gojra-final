@@ -49,7 +49,7 @@ export default function VisionPage() {
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
                   </Button>
                 </Link>
-                <Button asChild className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold hover:from-yellow-500 hover:to-yellow-700">
+                <Button asChild className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]">
                   <Link to="/#contact">Talk to the Team</Link>
                 </Button>
               </div>
