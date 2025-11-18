@@ -10,8 +10,9 @@ import Landing from "./pages/Landing.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import VisionPage from "./pages/Vision.tsx";
 import "./types/global.d.ts";
+import { HelmetProvider } from "react-helmet-async";
 
-function RouteSyncer() {
+export function RouteSyncer() {
   const location = useLocation();
   useEffect(() => {
     window.parent.postMessage(
@@ -37,18 +38,20 @@ function RouteSyncer() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <VlyToolbar />
-    <InstrumentationProvider>
-      <BrowserRouter>
-        <RouteSyncer />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} /> {/* TODO: change redirect after auth to correct page */}
-          <Route path="/vision" element={<VisionPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-      <Toaster />
-    </InstrumentationProvider>
+    <HelmetProvider>
+      <VlyToolbar />
+      <InstrumentationProvider>
+        <BrowserRouter>
+          <RouteSyncer />
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} /> {/* TODO: change redirect after auth to correct page */}
+            <Route path="/vision" element={<VisionPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <Toaster />
+      </InstrumentationProvider>
+    </HelmetProvider>
   </StrictMode>,
 );

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowLeft, Sparkles, Target, TrendingUp, Trophy } from "lucide-react";
 import { Link } from "react-router";
+import { Helmet } from "react-helmet-async";
+import { getCanonicalUrl, siteMetadata } from "@/seo/metadata";
 
 const textReveal = {
   hidden: { opacity: 0, y: 24 },
@@ -15,8 +17,30 @@ const textReveal = {
 };
 
 export default function VisionPage() {
+  const pageTitle = `Vision & Story | ${siteMetadata.siteName}`;
+  const pageDescription =
+    "Understand the mission, values, and long-term ambition powering Mall of Gojra’s metro-grade commercial development.";
+  const canonicalUrl = getCanonicalUrl("/vision");
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="robots" content="index,follow" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content={siteMetadata.siteName} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={siteMetadata.socialImage} />
+        <meta property="og:image:alt" content="Mall of Gojra crest" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={siteMetadata.socialImage} />
+      </Helmet>
       <Navbar />
 
       <main className="relative pt-28 pb-24">

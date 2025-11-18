@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+import { getCanonicalUrl, siteMetadata } from "@/seo/metadata";
 
 export default function NotFound() {
+  const pageTitle = `Page Not Found | ${siteMetadata.siteName}`;
+  const canonicalUrl = getCanonicalUrl("/404");
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -8,8 +13,18 @@ export default function NotFound() {
       transition={{ duration: 0.5 }}
       className="min-h-screen flex flex-col"
     >
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="robots" content="noindex,follow" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content={siteMetadata.siteName} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={pageTitle} />
+      </Helmet>
 
-      
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="max-w-5xl mx-auto relative px-4">

@@ -51,7 +51,13 @@ function ImageCard({
       transition={{ duration: 0.5, delay }}
     >
       <div className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 ${aspectClass}`}>
-        <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
+        <img
+          src={item.src}
+          alt={item.alt}
+          className="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
         <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[32px]" />
         <div className="absolute bottom-6 left-6 right-6 space-y-1 text-white/90">

@@ -29,6 +29,7 @@ export default function ContactSection() {
       });
       (e.target as HTMLFormElement).reset();
     } catch (error) {
+      console.error("Lead submission failed", error);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

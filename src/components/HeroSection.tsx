@@ -12,7 +12,11 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-black">
+    <section
+      id="hero"
+      aria-labelledby="hero-heading"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-black"
+    >
       {/* Background Video */}
       <div className="absolute inset-0 overflow-hidden">
         <video
@@ -23,11 +27,21 @@ export default function HeroSection() {
           loop
           playsInline
           preload="auto"
+          poster={frontImage}
           aria-hidden="true"
+          title="Night-time exterior of Mall of Gojra"
         >
           <track kind="captions" />
         </video>
         <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+        <noscript>
+          <img
+            src={frontImage}
+            alt="Night-time exterior of Mall of Gojra"
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+        </noscript>
       </div>
 
       {/* Animated Background Gradients */}
@@ -55,7 +69,10 @@ export default function HeroSection() {
               <span className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1
+              id="hero-heading"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
+            >
               <span className="sm:whitespace-nowrap">
                 Secure Your{" "}
                 <span className="text-[var(--brand-gold)]">

@@ -18,6 +18,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { ArrowRight, Loader2, Mail, UserX } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { Helmet } from "react-helmet-async";
+import { getCanonicalUrl, siteMetadata } from "@/seo/metadata";
 
 interface AuthProps {
   redirectAfterAuth?: string;
@@ -30,6 +32,8 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const pageTitle = `Secure Access | ${siteMetadata.siteName}`;
+  const canonicalUrl = getCanonicalUrl("/auth");
 
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
@@ -98,7 +102,28 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
 
   return (
     <div className="min-h-screen flex flex-col">
-
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta
+          name="description"
+          content="Verify your identity to access Mall of Gojra’s private collateral, brochures, and launch details."
+        />
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteMetadata.siteName} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content="Secure access gateway for Mall of Gojra partners and prospects." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={siteMetadata.socialImage} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta
+          name="twitter:description"
+          content="Secure access gateway for Mall of Gojra partners and prospects."
+        />
+        <meta name="twitter:image" content={siteMetadata.socialImage} />
+      </Helmet>
       
       {/* Auth Content */}
       <div className="flex-1 flex items-center justify-center">
