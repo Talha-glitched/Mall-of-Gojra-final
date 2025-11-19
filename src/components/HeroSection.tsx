@@ -76,7 +76,7 @@ export default function HeroSection() {
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-[0px]" />
         <noscript>
           <img
             src={frontImage}
