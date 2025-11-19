@@ -182,7 +182,7 @@ export default function FloorPlanSection() {
                 className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
                 loading="eager"
                 decoding="sync"
-                fetchpriority="high"
+                fetchPriority="high"
               />
               {!isPreloaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white/70 text-sm tracking-wide">

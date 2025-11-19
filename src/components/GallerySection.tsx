@@ -20,7 +20,7 @@ const galleryItems = [
   {
     src: photo7,
     alt: "Mall Exterior - Angle 7",
-    caption: "Architectural Detailing",
+    caption: "Front View",
     description: "Bold geometry with warm lighting accents and tiered terraces.",
   },
   {
@@ -50,7 +50,9 @@ function ImageCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <div className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 ${aspectClass}`}>
+      <div
+        className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 ${aspectClass}`}
+      >
         <img
           src={item.src}
           alt={item.alt}
@@ -58,13 +60,19 @@ function ImageCard({
           loading="lazy"
           decoding="async"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[32px]" />
-        <div className="absolute bottom-6 left-6 right-6 space-y-1 text-white/90">
-          <p className="text-sm font-semibold tracking-[0.2em] uppercase text-white/70">{item.caption}</p>
-          <p className="text-lg font-semibold text-white leading-snug">
-            {item.description}
-          </p>
+        <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-white/10" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+        <div className="pointer-events-none absolute top-5 left-5">
+          <span className="inline-flex items-center rounded-full bg-black/55 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white/70 backdrop-blur">
+            {item.caption}
+          </span>
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-5 bottom-5 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="rounded-3xl border border-white/10 bg-black/60 p-5 backdrop-blur">
+            <p className="text-base font-medium text-white leading-snug">{item.description}</p>
+          </div>
         </div>
       </div>
     </motion.div>
