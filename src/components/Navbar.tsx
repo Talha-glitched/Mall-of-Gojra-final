@@ -41,12 +41,12 @@ export default function Navbar() {
               <img
                 src={buildingMark}
                 alt="Mall of Gojra Icon"
-                className="h-12 w-12 object-contain sm:h-16 sm:w-16 lg:h-[5.6rem] lg:w-[5.6rem]"
+                className="h-20 w-20 object-contain sm:h-16 sm:w-16 lg:h-[5.6rem] lg:w-[5.6rem]"
               />
               <img
                 src={websiteLogo}
                 alt="Mall of Gojra"
-                className="h-8 sm:h-12 lg:h-16 w-auto max-w-[150px] sm:max-w-none"
+                className="h-14 sm:h-12 lg:h-16 w-auto max-w-[150px] sm:max-w-none"
               />
             </Link>
           </motion.div>
