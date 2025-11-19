@@ -1,31 +1,47 @@
 import { motion } from "framer-motion";
+import { Mail, Phone } from "lucide-react";
+import buildingMark from "@/Assets/Building Logo copy.png";
 
 export default function Footer() {
   return (
     <footer className="relative py-12 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          <div>
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
               <img src="https://harmless-tapir-303.convex.cloud/api/storage/3ed0ac66-f978-4944-ae20-157f8694aa24" alt="Mall of Gojra" className="h-12" />
             </div>
             <p className="text-white/60 text-sm">
               Gojra's first metro-grade flagship commercial property, built to the highest standard.
             </p>
+            <div className="pt-2">
+              <img src={buildingMark} alt="Mall of Gojra Icon" className="h-20 w-auto object-contain" />
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-white font-semibold mb-4">Vision</h4>
-            <p className="text-white/60 text-sm">
-              To uplift Gojra by building a landmark commercial space where ambitious brands can grow, leave a mark, and inspire the city's future.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">Mission</h4>
-            <p className="text-white/60 text-sm">
-              To support dreamers, doers, and legacy-builders with a flagship-grade space that reflects their ambition.
-            </p>
+          <div className="space-y-4">
+            <h4 className="text-white font-semibold">Contact</h4>
+            <p className="text-white/60 text-sm">Speak directly with our leasing concierge.</p>
+            <div className="space-y-3 text-white/80 text-sm">
+              <a href="tel:+923000000000" className="flex items-center gap-3 hover:text-white transition-colors">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <span>
+                  <span className="block text-xs uppercase tracking-wide text-white/50">Call</span>
+                  +92 300 0000000
+                </span>
+              </a>
+              <a href="mailto:info@mallofgojra.com" className="flex items-center gap-3 hover:text-white transition-colors">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <span>
+                  <span className="block text-xs uppercase tracking-wide text-white/50">Email</span>
+                  info@mallofgojra.com
+                </span>
+              </a>
+            </div>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Building2, Zap, Shield, Wifi, Car, TrendingUp } from "lucide-react";
-
+import patternBg from "../Assets/Pattern copy.png";
 const features = [
   {
     icon: Building2,
@@ -56,30 +56,43 @@ export default function FeaturesSection() {
               Commercial Landmark
             </span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-2xl text-white/70 max-w-3xl mx-auto">
             Gojra's largest, most premium commercial property, built to the highest standard
           </p>
         </motion.div>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative"
-            >
-              <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-yellow-500/20">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <feature.icon className="w-7 h-7 text-yellow-400" />
+      <div className="relative w-full px-4 sm:px-6 lg:px-8 mt-12 overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-50"
+          style={{
+            backgroundImage: `url(${patternBg})`,
+            backgroundSize: "520px",
+            backgroundRepeat: "repeat",
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative"
+              >
+                <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-yellow-500/20">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <feature.icon className="w-7 h-7 text-yellow-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                  <p className="text-white/60 leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                <p className="text-white/60 leading-relaxed">{feature.description}</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

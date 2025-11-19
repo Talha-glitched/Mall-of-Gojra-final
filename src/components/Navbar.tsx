@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router";
 import websiteLogo from "@/Assets/Website-Logo.png";
+import buildingMark from "@/Assets/Building Logo copy.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,12 +37,13 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             className="flex items-center gap-3"
           >
-            <Link to="/" className="inline-flex items-center">
+            <Link to="/" className="inline-flex items-center gap-4">
+              <img src={buildingMark} alt="Mall of Gojra Icon" className="h-[4.8rem] w-[4.8rem] sm:h-[5.6rem] sm:w-[5.6rem] object-contain" />
               <img
                 src={websiteLogo}
                 alt="Mall of Gojra"
                 className="h-16 sm:h-20 w-auto"
-                style={{ width: "60%", height: "auto" }}
+                style={{ width: "45%", height: "auto" }}
               />
             </Link>
           </motion.div>

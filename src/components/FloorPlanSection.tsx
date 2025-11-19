@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import nightshotImg from "../Assets/front_nightshot.jpg";
+import patternBg from "../Assets/Pattern copy.png";
 import {
   allFloorPlanImageSources,
   frontFloorImages,
@@ -73,8 +74,8 @@ export default function FloorPlanSection() {
               Under One Roof
             </span>
           </h2>
-          <p className="text-xl text-white/70">Total Built-up Area: 24,710.15 sq ft</p>
-          <p className="text-lg text-white/60">Usable Commercial Area: 18,833 sq ft</p>
+          <p className="text-2xl text-white/70">Total Built-up Area: 24,710.15 sq ft</p>
+          <p className="text-2xl text-white/60">Usable Commercial Area: 18,833 sq ft</p>
 
           {/* Scroll-reveal image */}
           <motion.div
@@ -175,25 +176,37 @@ export default function FloorPlanSection() {
             viewport={{ once: true }}
             className="w-full h-full"
           >
-            <div className="group relative h-full rounded-[28px] overflow-hidden border border-white/15 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
-              <img
-                src={activeImage}
-                alt={lastHovered ?? floors[0].name}
-                className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
-                loading="eager"
-                decoding="sync"
-                fetchPriority="high"
+            <div className="relative h-full rounded-[32px] overflow-hidden border border-white/10">
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-25"
+                style={{
+                  backgroundImage: `url(${patternBg})`,
+                  backgroundSize: "680px",
+                  backgroundRepeat: "repeat-y",
+                  backgroundPosition: "center",
+                }}
               />
-              {!isPreloaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white/70 text-sm tracking-wide">
-                  Loading floor plans…
-                </div>
-              )}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-              <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
-                <div className="text-sm">
-                  {lastHovered ?? floors[0].name}
+              <div className="group relative h-full rounded-[28px] overflow-hidden border border-white/15 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
+                <img
+                  src={activeImage}
+                  alt={lastHovered ?? floors[0].name}
+                  className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
+                  loading="eager"
+                  decoding="sync"
+                  fetchPriority="high"
+                />
+                {!isPreloaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white/70 text-sm tracking-wide">
+                    Loading floor plans…
+                  </div>
+                )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
+                  <div className="text-sm">
+                    {lastHovered ?? floors[0].name}
+                  </div>
                 </div>
               </div>
             </div>

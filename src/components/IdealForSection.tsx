@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ShoppingCart, Building, Shirt, Hospital, Smartphone, Coffee } from "lucide-react";
+import patternBg from "../Assets/Pattern copy.png";
 
 const businesses = [
   { icon: ShoppingCart, title: "Supermarkets & Grocery Chains", color: "from-green-400 to-green-600" },
@@ -31,25 +32,38 @@ export default function IdealForSection() {
             </span>
           </h2>
         </motion.div>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {businesses.map((business, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 text-center">
-                <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${business.color} bg-opacity-20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <business.icon className="w-8 h-8 text-white" />
+      <div className="relative w-full px-4 sm:px-6 lg:px-8 mt-12 overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-50"
+          style={{
+            backgroundImage: `url(${patternBg})`,
+            backgroundSize: "520px",
+            backgroundRepeat: "repeat",
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {businesses.map((business, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 text-center">
+                  <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${business.color} bg-opacity-20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <business.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white">{business.title}</h3>
                 </div>
-                <h3 className="text-lg font-bold text-white">{business.title}</h3>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

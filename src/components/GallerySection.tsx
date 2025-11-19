@@ -100,7 +100,7 @@ export default function GallerySection() {
             See The Mall
             <span className="text-[var(--brand-gold)]"> Up Close</span>
           </h2>
-          <p className="max-w-2xl text-lg text-white/70">
+          <p className="max-w-2xl text-xl sm:text-2xl text-white/70">
             Architectural renders showcasing every angle — from the grand entrance to the illuminated evening ambience.
           </p>
         </motion.div>
