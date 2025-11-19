@@ -15,6 +15,7 @@ import {
   getCanonicalUrl,
   siteMetadata,
 } from "@/seo/metadata";
+import { allFloorPlanImageSources } from "@/data/floor-plan-images";
 
 export default function Landing() {
   const pageTitle = `${siteMetadata.siteName} | ${siteMetadata.brandTagline}`;
@@ -44,6 +45,9 @@ export default function Landing() {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={siteMetadata.socialImage} />
+        {allFloorPlanImageSources.map((src) => (
+          <link key={src} rel="preload" as="image" href={src} />
+        ))}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

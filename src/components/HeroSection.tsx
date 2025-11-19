@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import frontImage from "@/Assets/front_nightshot.jpg";
+import { useEffect, useRef, useState } from "react";
 
 export default function HeroSection() {
   const scrollToContact = () => {
@@ -11,6 +12,39 @@ export default function HeroSection() {
     }
   };
 
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    handleChange(mediaQuery);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // ignored: autoplay may fail on some browsers until user interaction
+      });
+    }
+  }, [prefersReducedMotion]);
+
   return (
     <section
       id="hero"
@@ -19,20 +53,29 @@ export default function HeroSection() {
     >
       {/* Background Video */}
       <div className="absolute inset-0 overflow-hidden">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/MOG.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={frontImage}
-          aria-hidden="true"
-          title="Night-time exterior of Mall of Gojra"
-        >
-          <track kind="captions" />
-        </video>
+        {!prefersReducedMotion ? (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/MOG.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={frontImage}
+            aria-hidden="true"
+            title="Night-time exterior of Mall of Gojra"
+          >
+            <track kind="captions" />
+          </video>
+        ) : (
+          <img
+            src={frontImage}
+            alt="Night-time exterior of Mall of Gojra"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
         <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
         <noscript>
           <img

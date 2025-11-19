@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import nightshotImg from "../Assets/front_nightshot.jpg";
+import {
+  allFloorPlanImageSources,
+  frontFloorImages,
+  topFloorImages,
+} from "@/data/floor-plan-images";
 
 const floors = [
   { name: "Lower Ground", area: "4,058.75", dimensions: "94'-5\" × 43'", height: "10 ft" },
@@ -13,40 +18,41 @@ const floors = [
 export default function FloorPlanSection() {
   const [lastHovered, setLastHovered] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"front" | "top">("front");
-
-  const imageByFloorFront = useMemo(() => ({
-    "Lower Ground": "/Front View 1.png",
-    "Ground Floor": "/Front View 2.png",
-    "First Floor": "/Front View 3.png",
-    "Second Floor": "/Front View 4.png",
-    "Roof Top": "/Front View 5.png",
-  } as Record<string, string>), []);
-
-  const imageByFloorTop = useMemo(() => ({
-    "Lower Ground": "/Top View 5.png",
-    "Ground Floor": "/Top View 4.png",
-    "First Floor": "/Top View 3.png",
-    "Second Floor": "/Top View 2.png",
-    "Roof Top": "/Top View 1.png",
-  } as Record<string, string>), []);
-
-  const allImageSources = useMemo(
-    () => [...Object.values(imageByFloorFront), ...Object.values(imageByFloorTop)],
-    [imageByFloorFront, imageByFloorTop],
-  );
+  const [isPreloaded, setIsPreloaded] = useState(false);
 
   useEffect(() => {
-    allImageSources.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, [allImageSources]);
+    let isMounted = true;
+    const preload = async () => {
+      await Promise.all(
+        allFloorPlanImageSources.map(
+          (src) =>
+            new Promise<void>((resolve) => {
+              const img = new Image();
+              img.src = src;
+              if (img.complete) {
+                resolve();
+              } else {
+                img.onload = () => resolve();
+                img.onerror = () => resolve();
+              }
+            }),
+        ),
+      );
+      if (isMounted) {
+        setIsPreloaded(true);
+      }
+    };
+    preload();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const activeImage = useMemo(() => {
-    const map = viewMode === "front" ? imageByFloorFront : imageByFloorTop;
-    const fallback = map[floors[0].name];
-    return lastHovered ? map[lastHovered] : fallback;
-  }, [viewMode, lastHovered, imageByFloorFront, imageByFloorTop]);
+    const map = viewMode === "front" ? frontFloorImages : topFloorImages;
+    const fallback = map[floors[0].name as keyof typeof map];
+    return lastHovered ? map[lastHovered as keyof typeof map] : fallback;
+  }, [viewMode, lastHovered]);
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -172,9 +178,17 @@ export default function FloorPlanSection() {
             <div className="group relative h-full rounded-[28px] overflow-hidden border border-white/15 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
               <img
                 src={activeImage}
-                alt={lastHovered ?? "Floor Preview"}
+                alt={lastHovered ?? floors[0].name}
                 className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
+                loading="eager"
+                decoding="sync"
+                fetchpriority="high"
               />
+              {!isPreloaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white/70 text-sm tracking-wide">
+                  Loading floor plans…
+                </div>
+              )}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
