@@ -122,7 +122,7 @@ export default function HeroSection() {
               className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
               <span className="sm:whitespace-nowrap">
-                Mall of Gojra{" "} 
+                Mall of Gojra{" "}
                 <br />
                 <span className="text-[var(--brand-gold)]">
                   Secure Your Flagship Outlet

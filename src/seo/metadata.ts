@@ -63,12 +63,21 @@ export const buildLandingStructuredData = () => ({
   "@type": "ShoppingCenter",
   "@id": `${siteMetadata.siteUrl}#shopping-center`,
   name: siteMetadata.siteName,
-  alternateName: "MOG",
+  legalName: siteMetadata.siteName,
+  alternateName: ["MOG", "Mall of Gojra Commercial Plaza", "Mall of Gojra", "Gojra Mall"],
   url: siteMetadata.siteUrl,
   description: siteMetadata.description,
   image: siteMetadata.socialImage,
-  logo: siteMetadata.socialImage,
+  logo: {
+    "@type": "ImageObject",
+    url: siteMetadata.socialImage,
+    name: `${siteMetadata.siteName} Logo`,
+  },
   slogan: siteMetadata.brandTagline,
+  brand: {
+    "@type": "Brand",
+    name: siteMetadata.siteName,
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: siteMetadata.businessAddress.streetAddress,

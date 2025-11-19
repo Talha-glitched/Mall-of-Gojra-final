@@ -65,10 +65,26 @@ export default function Landing() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": `${siteMetadata.siteUrl}#organization`,
               name: siteMetadata.siteName,
+              legalName: siteMetadata.siteName,
+              alternateName: ["MOG", "Mall of Gojra Commercial Plaza"],
               url: siteMetadata.siteUrl,
-              logo: siteMetadata.socialImage,
+              logo: {
+                "@type": "ImageObject",
+                url: siteMetadata.socialImage,
+                name: `${siteMetadata.siteName} Logo`,
+              },
               description: siteMetadata.description,
+              foundingLocation: {
+                "@type": "Place",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Gojra",
+                  addressRegion: "Punjab",
+                  addressCountry: "PK",
+                },
+              },
               address: {
                 "@type": "PostalAddress",
                 streetAddress: siteMetadata.businessAddress.streetAddress,
@@ -80,8 +96,48 @@ export default function Landing() {
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "Sales",
+                email: "info@mallofgojra.com",
+                telephone: "+923008689515",
                 areaServed: "PK",
                 availableLanguage: "en-PK",
+              },
+              sameAs: [siteMetadata.siteUrl],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": `${siteMetadata.siteUrl}#local-business`,
+              name: siteMetadata.siteName,
+              image: siteMetadata.socialImage,
+              logo: siteMetadata.socialImage,
+              description: siteMetadata.description,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: siteMetadata.businessAddress.streetAddress,
+                addressLocality: siteMetadata.businessAddress.addressLocality,
+                addressRegion: siteMetadata.businessAddress.addressRegion,
+                postalCode: siteMetadata.businessAddress.postalCode,
+                addressCountry: siteMetadata.businessAddress.addressCountry,
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: siteMetadata.geo.latitude,
+                longitude: siteMetadata.geo.longitude,
+              },
+              telephone: "+923008689515",
+              email: "info@mallofgojra.com",
+              url: siteMetadata.siteUrl,
+              priceRange: "$$",
+              areaServed: {
+                "@type": "City",
+                name: "Gojra",
+                addressRegion: "Punjab",
+                addressCountry: "PK",
               },
             }),
           }}
