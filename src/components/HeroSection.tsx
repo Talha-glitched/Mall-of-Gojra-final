@@ -109,12 +109,17 @@ export default function HeroSection() {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center px-5 py-2 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
             >
-              <span style={{ fontFamily: "Top Luxury" }} className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
+              <span
+                style={{ fontFamily: "Top Luxury" }}
+                className="text-[var(--brand-gold)] font-semibold text-xs sm:text-sm"
+              >
+                🏆 Gojra's Premier Commercial Space
+              </span>
             </motion.div>
 
             <h1
               id="hero-heading"
-              className="text-3xl sm:text-5xl lg:text-5xl font-bold text-white leading-tight"
+              className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
               <span className="sm:whitespace-nowrap">
                 Secure Your{" "}
@@ -127,7 +132,7 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-white/100 leading-relaxed text-[1.6rem] sm:text-[1.6rem] font-light">
+            <p className="text-white/100 leading-relaxed text-lg sm:text-xl lg:text-[1.6rem] font-light">
               <span className="text-[var(--brand-gold)] font-semibold">
                 Move in. Stand out. Lead the market with
               </span>
@@ -138,7 +143,7 @@ export default function HeroSection() {
               <Button
                 onClick={scrollToContact}
                 size="default"
-                className="bg-[var(--brand-gold)] text-black font-medium text-base px-6 py-4 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] shadow-lg shadow-[0_20px_60px_-20px_rgba(var(--brand-gold-rgb),0.4)] cursor-pointer"
+                className="bg-[var(--brand-gold)] text-black font-medium text-base px-5 py-3 sm:px-6 sm:py-4 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] shadow-lg shadow-[0_20px_60px_-20px_rgba(var(--brand-gold-rgb),0.4)] cursor-pointer"
               >
                 Get Brochure & Floor Plans
                 <ArrowRight className="ml-2" />
@@ -157,24 +162,24 @@ export default function HeroSection() {
           className="mt-12 flex flex-wrap items-center justify-center gap-8"
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-[var(--brand-gold)]">24,710</div>
-            <div className="text-sm text-white/60">sq ft Total Area</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-gold)]">24,710</div>
+            <div className="text-xs sm:text-sm text-white/60">sq ft Total Area</div>
           </div>
           <div className="h-12 w-px bg-white/20 hidden sm:block" />
           <div className="text-center">
-            <div className="text-3xl font-bold text-[var(--brand-gold)]">108 ft</div>
-            <div className="text-sm text-white/60">Frontage</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-gold)]">108 ft</div>
+            <div className="text-xs sm:text-sm text-white/60">Frontage</div>
           </div>
           <div className="h-12 w-px bg-white/20 hidden sm:block" />
           <div className="text-center">
-            <div className="text-3xl font-bold text-[var(--brand-gold)]">22</div>
-            <div className="text-sm text-white/60">Car Parking</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-gold)]">22</div>
+            <div className="text-xs sm:text-sm text-white/60">Car Parking</div>
 
           </div>
           <div className="h-12 w-px bg-white/20 hidden sm:block" />
           <div className="text-center">
-            <div className="text-3xl font-bold text-[var(--brand-gold)]">Dual access</div>
-            <div className="text-sm text-white/60">Front & Back</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-gold)]">Dual access</div>
+            <div className="text-xs sm:text-sm text-white/60">Front & Back</div>
 
           </div>
 

@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 const infrastructure = [
   "Modern 6×7 ft elevator & dual staircases",
   "Drive-in/drop-off area with wide accessibility",
-  "Attractive façade with display windows",
+  "Attractive facade with display windows",
   "HVAC-compatible setup",
   "Dedicated loading area for deliveries",
   "22-car parking capacity",

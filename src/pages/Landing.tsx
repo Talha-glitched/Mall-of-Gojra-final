@@ -9,6 +9,7 @@ import GallerySection from "@/components/GallerySection";
 import ContactSection from "@/components/ContactSection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
 import {
   buildLandingStructuredData,
@@ -74,6 +75,7 @@ export default function Landing() {
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

@@ -17,9 +17,31 @@ const floors = [
 ];
 
 export default function FloorPlanSection() {
-  const [lastHovered, setLastHovered] = useState<string | null>(null);
+  const [activeFloorIndex, setActiveFloorIndex] = useState(0);
   const [viewMode, setViewMode] = useState<"front" | "top">("front");
   const [isPreloaded, setIsPreloaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      return;
+    }
+    const intervalId = setInterval(() => {
+      setActiveFloorIndex((prev) => (prev + 1) % floors.length);
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [isMobile]);
+
+  const activeFloor = floors[activeFloorIndex];
 
   useEffect(() => {
     let isMounted = true;
@@ -51,9 +73,11 @@ export default function FloorPlanSection() {
 
   const activeImage = useMemo(() => {
     const map = viewMode === "front" ? frontFloorImages : topFloorImages;
-    const fallback = map[floors[0].name as keyof typeof map];
-    return lastHovered ? map[lastHovered as keyof typeof map] : fallback;
-  }, [viewMode, lastHovered]);
+    return (
+      map[activeFloor.name as keyof typeof map] ??
+      map[floors[0].name as keyof typeof map]
+    );
+  }, [viewMode, activeFloor.name]);
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -148,8 +172,13 @@ export default function FloorPlanSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className={`backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer ${lastHovered === floor.name ? "bg-white/15 border-[rgba(var(--brand-gold-rgb),0.4)]" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
-                onMouseEnter={() => setLastHovered(floor.name)}
+                className={`${isMobile && index !== activeFloorIndex ? "hidden" : ""} backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer ${index === activeFloorIndex ? "bg-white/15 border-[rgba(var(--brand-gold-rgb),0.4)]" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
+                onMouseEnter={() => {
+                  if (!isMobile) {
+                    setActiveFloorIndex(index);
+                  }
+                }}
+                onClick={() => setActiveFloorIndex(index)}
               >
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 items-center">
                   <div>
@@ -190,7 +219,7 @@ export default function FloorPlanSection() {
               <div className="group relative h-full rounded-[28px] overflow-hidden border border-white/15 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
                 <img
                   src={activeImage}
-                  alt={lastHovered ?? floors[0].name}
+                  alt={activeFloor.name}
                   className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
                   loading="eager"
                   decoding="sync"
@@ -205,7 +234,7 @@ export default function FloorPlanSection() {
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
                   <div className="text-sm">
-                    {lastHovered ?? floors[0].name}
+                    {activeFloor.name}
                   </div>
                 </div>
               </div>

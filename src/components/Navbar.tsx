@@ -37,13 +37,16 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             className="flex items-center gap-3"
           >
-            <Link to="/" className="inline-flex items-center gap-4">
-              <img src={buildingMark} alt="Mall of Gojra Icon" className="h-[4.8rem] w-[4.8rem] sm:h-[5.6rem] sm:w-[5.6rem] object-contain" />
+            <Link to="/" className="inline-flex items-center gap-3 sm:gap-4">
+              <img
+                src={buildingMark}
+                alt="Mall of Gojra Icon"
+                className="h-12 w-12 object-contain sm:h-16 sm:w-16 lg:h-[5.6rem] lg:w-[5.6rem]"
+              />
               <img
                 src={websiteLogo}
                 alt="Mall of Gojra"
-                className="h-12 sm:h-16 w-auto"
-                style={{ width: "34%", height: "auto" }}
+                className="h-8 sm:h-12 lg:h-16 w-auto max-w-[150px] sm:max-w-none"
               />
             </Link>
           </motion.div>
