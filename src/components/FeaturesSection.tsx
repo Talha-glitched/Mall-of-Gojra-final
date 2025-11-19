@@ -57,7 +57,7 @@ export default function FeaturesSection() {
             </span>
           </h2>
           <p className="text-2xl text-white/100 max-w-3xl mx-auto">
-            Gojra's largest, most premium commercial property, built to the highest standard
+            Largest, most premium property, built to the highest standard.
           </p>
         </motion.div>
       </div>

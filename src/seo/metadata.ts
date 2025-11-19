@@ -63,13 +63,19 @@ export const buildLandingStructuredData = () => ({
   "@type": "ShoppingCenter",
   "@id": `${siteMetadata.siteUrl}#shopping-center`,
   name: siteMetadata.siteName,
+  alternateName: "MOG",
   url: siteMetadata.siteUrl,
   description: siteMetadata.description,
   image: siteMetadata.socialImage,
+  logo: siteMetadata.socialImage,
   slogan: siteMetadata.brandTagline,
   address: {
     "@type": "PostalAddress",
-    ...siteMetadata.businessAddress,
+    streetAddress: siteMetadata.businessAddress.streetAddress,
+    addressLocality: siteMetadata.businessAddress.addressLocality,
+    addressRegion: siteMetadata.businessAddress.addressRegion,
+    postalCode: siteMetadata.businessAddress.postalCode,
+    addressCountry: siteMetadata.businessAddress.addressCountry,
   },
   geo: {
     "@type": "GeoCoordinates",
@@ -102,5 +108,13 @@ export const buildLandingStructuredData = () => ({
       value: true,
     },
   ],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteMetadata.siteUrl}/#contact`,
+    },
+    "query-input": "required name=contact",
+  },
 });
 

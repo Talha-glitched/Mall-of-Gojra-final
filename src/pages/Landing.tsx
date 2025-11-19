@@ -32,8 +32,14 @@ export default function Landing() {
         <meta name="description" content={pageDescription} />
         <meta name="keywords" content={keywords} />
         <meta name="author" content={siteMetadata.siteName} />
-        <meta name="robots" content="index,follow" />
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+        <meta name="geo.region" content="PK-PB" />
+        <meta name="geo.placename" content="Gojra, Punjab, Pakistan" />
+        <meta name="geo.position" content="31.156977774382423;72.6837145756678" />
+        <meta name="ICBM" content="31.156977774382423, 72.6837145756678" />
         <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-PK" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={siteMetadata.siteName} />
         <meta property="og:title" content={pageTitle} />
@@ -52,6 +58,33 @@ export default function Landing() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: siteMetadata.siteName,
+              url: siteMetadata.siteUrl,
+              logo: siteMetadata.socialImage,
+              description: siteMetadata.description,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: siteMetadata.businessAddress.streetAddress,
+                addressLocality: siteMetadata.businessAddress.addressLocality,
+                addressRegion: siteMetadata.businessAddress.addressRegion,
+                postalCode: siteMetadata.businessAddress.postalCode,
+                addressCountry: siteMetadata.businessAddress.addressCountry,
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Sales",
+                areaServed: "PK",
+                availableLanguage: "en-PK",
+              },
+            }),
+          }}
         />
       </Helmet>
 

@@ -122,9 +122,10 @@ export default function HeroSection() {
               className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
               <span className="sm:whitespace-nowrap">
-                Secure Your{" "}
+                Mall of Gojra{" "} 
+                <br />
                 <span className="text-[var(--brand-gold)]">
-                  Flagship Outlet
+                  Secure Your Flagship Outlet
                 </span>
               </span>{" "}
               <span className="sm:whitespace-nowrap">
