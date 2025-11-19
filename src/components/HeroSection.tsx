@@ -109,12 +109,12 @@ export default function HeroSection() {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center px-5 py-2 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
             >
-              <span className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
+              <span style={{fontFamily:"Top Luxury"}} className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
             </motion.div>
 
             <h1
               id="hero-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              className="text-3xl sm:text-5xl lg:text-5xl font-bold text-white leading-tight"
             >
               <span className="sm:whitespace-nowrap">
                 Secure Your{" "}

@@ -42,8 +42,8 @@ export default function Navbar() {
               <img
                 src={websiteLogo}
                 alt="Mall of Gojra"
-                className="h-16 sm:h-20 w-auto"
-                style={{ width: "45%", height: "auto" }}
+                className="h-12 sm:h-16 w-auto"
+                style={{ width: "34%", height: "auto" }}
               />
             </Link>
           </motion.div>
@@ -52,37 +52,37 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6">
             <button
               onClick={() => scrollToSection("features")}
-              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("infrastructure")}
-              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Infrastructure
             </button>
             <button
               onClick={() => scrollToSection("location")}
-              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Location
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Contact
             </button>
             <Link
               to="/vision"
-              className="text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
             >
               Vision
             </Link>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
+              className="text-xs bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
             >
               Get Brochure
             </Button>
@@ -106,38 +106,38 @@ export default function Navbar() {
           >
             <button
               onClick={() => scrollToSection("features")}
-              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("infrastructure")}
-              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Infrastructure
             </button>
             <button
               onClick={() => scrollToSection("location")}
-              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Location
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Contact
             </button>
             <Link
               to="/vision"
-              className="block w-full text-left text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
               onClick={() => setIsOpen(false)}
             >
               Vision
             </Link>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="w-full bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
+              className="w-full text-xs bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
             >
               Get Brochure
             </Button>
