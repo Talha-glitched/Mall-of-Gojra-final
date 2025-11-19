@@ -39,7 +39,7 @@ export default function FeaturesSection() {
     <section id="features" className="relative py-24 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-[rgba(var(--brand-gold-rgb),0.1)] rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
@@ -56,7 +56,7 @@ export default function FeaturesSection() {
               Commercial Landmark
             </span>
           </h2>
-          <p className="text-2xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-2xl text-white/100 max-w-3xl mx-auto">
             Gojra's largest, most premium commercial property, built to the highest standard
           </p>
         </motion.div>
@@ -83,9 +83,9 @@ export default function FeaturesSection() {
                 transition={{ delay: index * 0.1 }}
                 className="group relative"
               >
-                <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-yellow-500/20">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <feature.icon className="w-7 h-7 text-yellow-400" />
+                <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-[0_25px_60px_-20px_rgba(var(--brand-gold-rgb),0.2)]">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[rgba(var(--brand-gold-rgb),0.2)] to-[rgba(var(--brand-gold-rgb),0.2)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <feature.icon className="w-7 h-7 text-[var(--brand-gold)]" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
                   <p className="text-white/60 leading-relaxed">{feature.description}</p>

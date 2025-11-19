@@ -58,7 +58,7 @@ export default function FloorPlanSection() {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-yellow-400/5 to-purple-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-[rgba(var(--brand-gold-rgb),0.05)] to-purple-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,8 +74,8 @@ export default function FloorPlanSection() {
               Under One Roof
             </span>
           </h2>
-          <p className="text-2xl text-white/70">Total Built-up Area: 24,710.15 sq ft</p>
-          <p className="text-2xl text-white/60">Usable Commercial Area: 18,833 sq ft</p>
+          <p className="text-2xl text-white/100">Total Built-up Area: 24,710.15 sq ft</p>
+          <p className="text-2xl text-white/100">Usable Commercial Area: 18,833 sq ft</p>
 
           {/* Scroll-reveal image */}
           <motion.div
@@ -101,7 +101,7 @@ export default function FloorPlanSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-8 p-6 backdrop-blur-xl bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 border border-yellow-400/30 rounded-2xl"
+            className="mt-8 p-6 backdrop-blur-xl bg-gradient-to-r from-[rgba(var(--brand-gold-rgb),0.1)] to-[rgba(var(--brand-gold-rgb),0.1)] border border-[rgba(var(--brand-gold-rgb),0.3)] rounded-2xl"
           >
             <div className="flex items-center justify-center gap-8 flex-wrap">
               <div className="text-center">
@@ -124,14 +124,14 @@ export default function FloorPlanSection() {
             <button
               type="button"
               onClick={() => setViewMode("front")}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "front" ? "bg-yellow-500/20 text-yellow-300 border border-yellow-400/40" : "text-white/80 hover:bg-white/10"}`}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "front" ? "bg-[rgba(var(--brand-gold-rgb),0.2)] text-[var(--brand-gold)] border border-[rgba(var(--brand-gold-rgb),0.4)]" : "text-white/80 hover:bg-white/10"}`}
             >
               Front View
             </button>
             <button
               type="button"
               onClick={() => setViewMode("top")}
-              className={`ml-1 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "top" ? "bg-yellow-500/20 text-yellow-300 border border-yellow-400/40" : "text-white/80 hover:bg-white/10"}`}
+              className={`ml-1 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "top" ? "bg-[rgba(var(--brand-gold-rgb),0.2)] text-[var(--brand-gold)] border border-[rgba(var(--brand-gold-rgb),0.4)]" : "text-white/80 hover:bg-white/10"}`}
             >
               Top View
             </button>
@@ -148,7 +148,7 @@ export default function FloorPlanSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className={`backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer ${lastHovered === floor.name ? "bg-white/15 border-yellow-400/40" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
+                className={`backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer ${lastHovered === floor.name ? "bg-white/15 border-[rgba(var(--brand-gold-rgb),0.4)]" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
                 onMouseEnter={() => setLastHovered(floor.name)}
               >
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 items-center">

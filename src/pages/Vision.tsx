@@ -45,7 +45,7 @@ export default function VisionPage() {
 
       <main className="relative pt-28 pb-24">
         <div className="absolute inset-x-0 top-32 -z-10 flex justify-center">
-          <div className="h-[480px] w-[480px] rounded-full bg-yellow-500/10 blur-3xl" />
+          <div className="h-[480px] w-[480px] rounded-full bg-[rgba(var(--brand-gold-rgb),0.1)] blur-3xl" />
         </div>
 
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,7 +69,7 @@ export default function VisionPage() {
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link to="/">
-                  <Button variant="ghost" className="text-white hover:text-yellow-300">
+                  <Button variant="ghost" className="text-white hover:text-[var(--brand-gold)]">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
                   </Button>
                 </Link>
@@ -157,7 +157,7 @@ export default function VisionPage() {
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
               custom={2}
-              className="rounded-[32px] border border-yellow-400/40 bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 p-8 backdrop-blur-xl"
+              className="rounded-[32px] border border-[rgba(var(--brand-gold-rgb),0.4)] bg-gradient-to-r from-[rgba(var(--brand-gold-rgb),0.1)] to-[rgba(var(--brand-gold-rgb),0.1)] p-8 backdrop-blur-xl"
             >
               <p className="text-lg text-white/85 leading-relaxed">
                 Mall of Gojra is how we signal that Gojra’s future is worth investing in — a platform where legacy and modern ambition meet.

@@ -28,8 +28,8 @@ export default function LocationSection() {
           >
             <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8">
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-yellow-400" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[rgba(var(--brand-gold-rgb),0.2)] to-[rgba(var(--brand-gold-rgb),0.2)] flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-[var(--brand-gold)]" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Prime Location</h3>
@@ -39,19 +39,19 @@ export default function LocationSection() {
 
               <ul className="space-y-4">
                 <li className="flex items-center gap-3">
-                  <Navigation className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                  <Navigation className="w-5 h-5 text-[var(--brand-gold)] flex-shrink-0" />
                   <span className="text-white/80">500m from Ghaffar Park Chowk</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Navigation className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                  <Navigation className="w-5 h-5 text-[var(--brand-gold)] flex-shrink-0" />
                   <span className="text-white/80">Next to Sharif Petroleum</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Navigation className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                  <Navigation className="w-5 h-5 text-[var(--brand-gold)] flex-shrink-0" />
                   <span className="text-white/80">20 ft wide commercial road (Expandable to 40 ft)</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Navigation className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                  <Navigation className="w-5 h-5 text-[var(--brand-gold)] flex-shrink-0" />
                   <span className="text-white/80">Dual access from front & back</span>
                 </li>
               </ul>

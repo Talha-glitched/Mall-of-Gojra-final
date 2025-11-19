@@ -52,31 +52,31 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6">
             <button
               onClick={() => scrollToSection("features")}
-              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white hover:text-[var(--brand-gold)] transition-colors"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("infrastructure")}
-              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white hover:text-[var(--brand-gold)] transition-colors"
             >
               Infrastructure
             </button>
             <button
               onClick={() => scrollToSection("location")}
-              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white hover:text-[var(--brand-gold)] transition-colors"
             >
               Location
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white hover:text-[var(--brand-gold)] transition-colors"
             >
               Contact
             </button>
             <Link
               to="/vision"
-              className="text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors"
+              className="text-xs text-white hover:text-[var(--brand-gold)] transition-colors"
             >
               Vision
             </Link>
@@ -106,31 +106,31 @@ export default function Navbar() {
           >
             <button
               onClick={() => scrollToSection("features")}
-              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("infrastructure")}
-              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Infrastructure
             </button>
             <button
               onClick={() => scrollToSection("location")}
-              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Location
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white hover:text-[var(--brand-gold)] transition-colors py-2"
             >
               Contact
             </button>
             <Link
               to="/vision"
-              className="block w-full text-left text-xs text-white/80 hover:text-[var(--brand-gold)] transition-colors py-2"
+              className="block w-full text-left text-xs text-white hover:text-[var(--brand-gold)] transition-colors py-2"
               onClick={() => setIsOpen(false)}
             >
               Vision

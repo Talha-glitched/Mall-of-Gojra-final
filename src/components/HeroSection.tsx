@@ -89,9 +89,9 @@ export default function HeroSection() {
 
       {/* Animated Background Gradients */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-[rgba(var(--brand-gold-rgb),0.2)] rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-yellow-400/10 to-purple-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-[rgba(var(--brand-gold-rgb),0.1)] to-purple-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -109,7 +109,7 @@ export default function HeroSection() {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center px-5 py-2 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
             >
-              <span style={{fontFamily:"Top Luxury"}} className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
+              <span style={{ fontFamily: "Top Luxury" }} className="text-[var(--brand-gold)] font-semibold">🏆 Gojra's Premier Commercial Space</span>
             </motion.div>
 
             <h1
@@ -127,7 +127,7 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-white/70 leading-relaxed text-[1.6rem] sm:text-[1.8rem]">
+            <p className="text-white/100 leading-relaxed text-[1.6rem] sm:text-[1.6rem] font-light">
               <span className="text-[var(--brand-gold)] font-semibold">
                 Move in. Stand out. Lead the market with
               </span>
@@ -137,10 +137,10 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button
                 onClick={scrollToContact}
-                size="lg"
-                className="bg-[var(--brand-gold)] text-black font-bold text-lg px-8 py-6 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] shadow-lg shadow-yellow-500/50 cursor-pointer"
+                size="default"
+                className="bg-[var(--brand-gold)] text-black font-medium text-base px-6 py-4 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] shadow-lg shadow-[0_20px_60px_-20px_rgba(var(--brand-gold-rgb),0.4)] cursor-pointer"
               >
-                Get Brochure & Schedule Visit
+                Get Brochure & Floor Plans
                 <ArrowRight className="ml-2" />
               </Button>
             </div>
