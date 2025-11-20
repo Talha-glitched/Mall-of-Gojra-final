@@ -41,7 +41,10 @@ export default function FloorPlanSection() {
     return () => clearInterval(intervalId);
   }, [isMobile]);
 
-  const activeFloor = floors[activeFloorIndex];
+  const activeFloor = useMemo(
+    () => floors[activeFloorIndex],
+    [activeFloorIndex],
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -78,6 +81,14 @@ export default function FloorPlanSection() {
       map[floors[0].name as keyof typeof map]
     );
   }, [viewMode, activeFloor.name]);
+
+  const handlePreviousFloor = () => {
+    setActiveFloorIndex((prev) => (prev - 1 + floors.length) % floors.length);
+  };
+
+  const handleNextFloor = () => {
+    setActiveFloorIndex((prev) => (prev + 1) % floors.length);
+  };
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -162,65 +173,63 @@ export default function FloorPlanSection() {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-          {/* Left: floor list (narrower) */}
-          <div className="w-full max-w-lg mx-auto lg:mx-0 space-y-4">
-            {floors.map((floor, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                className={`${isMobile && index !== activeFloorIndex ? "hidden" : ""} backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer ${index === activeFloorIndex ? "bg-white/15 border-[rgba(var(--brand-gold-rgb),0.4)]" : "bg-white/5 border-white/10 hover:bg-white/10"}`}
-                onMouseEnter={() => {
-                  if (!isMobile) {
-                    setActiveFloorIndex(index);
-                  }
-                }}
-                onClick={() => setActiveFloorIndex(index)}
-              >
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 items-center">
-                  <div>
-                    <div className="text-[var(--brand-gold)] font-semibold mb-1 text-sm">{floor.name}</div>
-                    <div className="text-lg font-bold text-white">{floor.area} sq ft</div>
-                  </div>
-                  <div className="text-white/70 text-sm">
-                    <div className="text-[11px] text-white/50 mb-1 uppercase tracking-wide">Dimensions</div>
-                    <div className="font-semibold">{floor.dimensions}</div>
-                  </div>
-                  <div className="text-white/70 text-sm">
-                    <div className="text-[11px] text-white/50 mb-1 uppercase tracking-wide">Ceiling Height</div>
-                    <div className="font-semibold">{floor.height}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Right: image preview */}
+        {isMobile ? (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-full h-full"
+            className="mt-6"
           >
-            <div className="relative h-full rounded-[32px] overflow-hidden border border-white/10">
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-25"
-                style={{
-                  backgroundImage: `url(${patternBg})`,
-                  backgroundSize: "680px",
-                  backgroundRepeat: "repeat-y",
-                  backgroundPosition: "center",
-                }}
-              />
-              <div className="group relative h-full rounded-[28px] overflow-hidden border border-white/15 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
+            <div className="relative rounded-[32px] border border-white/15 bg-white/5 overflow-hidden">
+              <div key={activeFloor.name} className="p-6 space-y-4 transition-all duration-300">
+                <div className="text-center">
+                  <div className="text-sm uppercase tracking-[0.2em] text-white/60 mb-1">
+                    {viewMode === "front" ? "Front Elevation" : "Top Layout"}
+                  </div>
+                  <div className="text-2xl font-bold text-white">{activeFloor.name}</div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 text-center">
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div className="text-[11px] uppercase tracking-wide text-white/50 mb-1">
+                      Area
+                    </div>
+                    <div className="text-lg font-semibold text-[var(--brand-gold)]">
+                      {activeFloor.area} sq ft
+                    </div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div className="text-[11px] uppercase tracking-wide text-white/50 mb-1">
+                      Ceiling Height
+                    </div>
+                    <div className="text-lg font-semibold text-white">
+                      {activeFloor.height}
+                    </div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10 col-span-2">
+                    <div className="text-[11px] uppercase tracking-wide text-white/50 mb-1">
+                      Dimensions
+                    </div>
+                    <div className="text-lg font-semibold text-white">
+                      {activeFloor.dimensions}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative" key={`${activeFloor.name}-${viewMode}`}>
+                <div
+                  aria-hidden
+                  className="absolute inset-0 opacity-25"
+                  style={{
+                    backgroundImage: `url(${patternBg})`,
+                    backgroundSize: "480px",
+                    backgroundRepeat: "repeat-y",
+                    backgroundPosition: "center",
+                  }}
+                />
                 <img
                   src={activeImage}
                   alt={activeFloor.name}
-                  className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
+                  className="w-full h-full object-contain bg-white/5"
                   loading="eager"
                   decoding="sync"
                   fetchPriority="high"
@@ -231,16 +240,125 @@ export default function FloorPlanSection() {
                   </div>
                 )}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
-                  <div className="text-sm">
-                    {activeFloor.name}
-                  </div>
-                </div>
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[32px]" />
+                <button
+                  type="button"
+                  onClick={handlePreviousFloor}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white border border-white/20 backdrop-blur hover:bg-black/70 transition"
+                  aria-label="Previous floor"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 mx-auto"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextFloor}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white border border-white/20 backdrop-blur hover:bg-black/70 transition"
+                  aria-label="Next floor"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 mx-auto"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
+                </button>
               </div>
             </div>
           </motion.div>
-        </div>
+        ) : (
+          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+            {/* Left: floor list (narrower) */}
+            <div className="w-full max-w-lg mx-auto lg:mx-0 space-y-4">
+              {floors.map((floor, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className={`${index === activeFloorIndex ? "bg-white/15 border-[rgba(var(--brand-gold-rgb),0.4)]" : "bg-white/5 border-white/10 hover:bg-white/10"} backdrop-blur-xl border rounded-2xl p-4 transition-all cursor-pointer`}
+                  onMouseEnter={() => {
+                    if (!isMobile) {
+                      setActiveFloorIndex(index);
+                    }
+                  }}
+                  onClick={() => setActiveFloorIndex(index)}
+                >
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 items-center">
+                    <div>
+                      <div className="text-[var(--brand-gold)] font-semibold mb-1 text-sm">{floor.name}</div>
+                      <div className="text-lg font-bold text-white">{floor.area} sq ft</div>
+                    </div>
+                    <div className="text-white/70 text-sm">
+                      <div className="text-[11px] text-white/50 mb-1 uppercase tracking-wide">Dimensions</div>
+                      <div className="font-semibold">{floor.dimensions}</div>
+                    </div>
+                    <div className="text-white/70 text-sm">
+                      <div className="text-[11px] text-white/50 mb-1 uppercase tracking-wide">Ceiling Height</div>
+                      <div className="font-semibold">{floor.height}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Right: image preview */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="w-full h-full"
+            >
+              <div className="relative h-full rounded-[32px] overflow-hidden border border-white/10">
+                <div
+                  aria-hidden
+                  className="absolute inset-0 opacity-25"
+                  style={{
+                    backgroundImage: `url(${patternBg})`,
+                    backgroundSize: "680px",
+                    backgroundRepeat: "repeat-y",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <div className="group relative h-full rounded-[28px] overflow-hidden border border-white/15 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
+                  <img
+                    src={activeImage}
+                    alt={activeFloor.name}
+                    className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-[1.01]"
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                  />
+                  {!isPreloaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white/70 text-sm tracking-wide">
+                      Loading floor plans…
+                    </div>
+                  )}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
+                    <div className="text-sm">
+                      {activeFloor.name}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
 
 
       </div>

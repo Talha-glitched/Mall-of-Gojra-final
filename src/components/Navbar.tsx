@@ -46,7 +46,7 @@ export default function Navbar() {
               <img
                 src={websiteLogo}
                 alt="Mall of Gojra"
-                className="h-14 sm:h-12 lg:h-16 w-auto max-w-[150px] sm:max-w-none"
+                className="h-14 sm:h-12 lg:h-16 w-auto max-w-[200px] sm:max-w-none"
               />
             </Link>
           </motion.div>
