@@ -146,7 +146,7 @@ export default function HeroSection() {
                 size="default"
                 className="bg-[var(--brand-gold)] text-black font-medium text-base px-5 py-3 sm:px-6 sm:py-4 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] shadow-lg shadow-[0_20px_60px_-20px_rgba(var(--brand-gold-rgb),0.4)] cursor-pointer"
               >
-                Get Brochure & Floor Plans
+                Brochure & Floor Plans
                 <ArrowRight className="ml-2" />
               </Button>
             </div>

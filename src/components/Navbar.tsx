@@ -87,7 +87,7 @@ export default function Navbar() {
               onClick={() => scrollToSection("contact")}
               className="text-xs bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
             >
-              Get Brochure
+              Brochure and Floor Plan
             </Button>
           </div>
 
