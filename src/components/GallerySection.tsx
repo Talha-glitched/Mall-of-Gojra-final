@@ -62,12 +62,12 @@ function ImageCard({
       transition={{ duration: 0.5, delay }}
     >
       <div
-        className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 ${aspectClass}`}
+        className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 ${aspectClass} min-h-0 flex items-center justify-center`}
       >
         <img
           src={item.src}
           alt={item.alt}
-          className="h-full w-full object-cover"
+          className="h-auto w-full max-h-[70vh] md:max-h-none md:h-full object-contain md:object-cover"
           loading="lazy"
           decoding="async"
         />

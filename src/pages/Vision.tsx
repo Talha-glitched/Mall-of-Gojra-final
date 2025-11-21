@@ -2,10 +2,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowLeft, Sparkles, Target, TrendingUp, Trophy } from "lucide-react";
+import { ArrowLeft, Sparkles, Target, TrendingUp, Trophy, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router";
 import { Helmet } from "react-helmet-async";
 import { getCanonicalUrl, siteMetadata } from "@/seo/metadata";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const textReveal = {
   hidden: { opacity: 0, y: 24 },
@@ -17,10 +25,43 @@ const textReveal = {
 };
 
 export default function VisionPage() {
+  const [isTeamDialogOpen, setIsTeamDialogOpen] = useState(false);
   const pageTitle = `Vision & Story | ${siteMetadata.siteName}`;
   const pageDescription =
-    "Understand the mission, values, and long-term ambition powering Mall of Gojra’s metro-grade commercial development.";
+    "Understand the mission, values, and long-term ambition powering Mall of Gojra's metro-grade commercial development.";
   const canonicalUrl = getCanonicalUrl("/vision");
+
+  // Team members data
+  const teamMembers = [
+    {
+      name: "Rana Nadeem",
+      phone: "+97155644156",
+      phoneFormatted: "+97155644156",
+      whatsapp: "97155644156", // WhatsApp format without + and spaces
+    },
+    {
+      name: "Rana Masuood",
+      phone: "+971503554207",
+      phoneFormatted: "+971503554207",
+      whatsapp: "971503554207",
+    },
+    {
+      name: "Rana Shahid",
+      phone: "+92 300 8689515",
+      phoneFormatted: "+923008689515", // Remove spaces for tel link
+      whatsapp: "923008689515",
+    },
+  ];
+
+  // Helper function to format phone for display
+  const formatPhoneDisplay = (phone: string) => {
+    return phone;
+  };
+
+  // Helper function to get WhatsApp URL
+  const getWhatsAppUrl = (phone: string) => {
+    return `https://wa.me/${phone}`;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black">
@@ -73,8 +114,11 @@ export default function VisionPage() {
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
                   </Button>
                 </Link>
-                <Button asChild className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]">
-                  <Link to="/#contact">Talk to the Team</Link>
+                <Button 
+                  onClick={() => setIsTeamDialogOpen(true)}
+                  className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
+                >
+                  Talk to the Team
                 </Button>
               </div>
             </motion.div>
@@ -169,6 +213,53 @@ export default function VisionPage() {
       </main>
 
       <Footer />
+
+      {/* Team Contact Dialog */}
+      <Dialog open={isTeamDialogOpen} onOpenChange={setIsTeamDialogOpen}>
+        <DialogContent className="bg-gradient-to-br from-gray-900 to-black border-white/10 text-white sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+              <MessageCircle className="h-5 w-5 text-[var(--brand-gold)]" />
+              Talk to Our Team
+            </DialogTitle>
+            <DialogDescription className="text-white/70">
+              Reach out to our team members via phone or WhatsApp
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-6 space-y-4">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="p-4 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                <h3 className="font-semibold text-lg text-white mb-2">{member.name}</h3>
+                <p className="text-white/80 mb-3 text-sm">{formatPhoneDisplay(member.phone)}</p>
+                <div className="flex gap-2">
+                  <a
+                    href={`tel:${member.phoneFormatted}`}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors text-sm font-medium"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call
+                  </a>
+                  <a
+                    href={getWhatsAppUrl(member.whatsapp)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-md transition-colors text-sm font-medium"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

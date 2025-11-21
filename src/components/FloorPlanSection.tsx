@@ -127,7 +127,7 @@ export default function FloorPlanSection() {
             }}
             className="mt-8 mb-6 overflow-hidden"
           >
-            <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl aspect-[16/9] max-h-[520px]">
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl aspect-[16/9] max-h-[520px] flex items-center justify-center">
               <video
                 key={activeHeroVideoIndex}
                 src={heroVideos[activeHeroVideoIndex]}
@@ -139,7 +139,7 @@ export default function FloorPlanSection() {
                     (prevIndex) => (prevIndex + 1) % heroVideos.length,
                   )
                 }
-                className="block w-full h-full object-cover"
+                className="block w-full h-full object-contain md:object-cover max-h-[80vh] md:max-h-none"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -227,7 +227,7 @@ export default function FloorPlanSection() {
                   </div>
                 </div>
               </div>
-              <div className="relative" key={`${activeFloor.name}-${viewMode}`}>
+              <div className="relative flex items-center justify-center min-h-[300px]" key={`${activeFloor.name}-${viewMode}`}>
                 <div
                   aria-hidden
                   className="absolute inset-0 opacity-25"
@@ -241,7 +241,7 @@ export default function FloorPlanSection() {
                 <img
                   src={activeImage}
                   alt={activeFloor.name}
-                  className="w-full h-full object-contain bg-white/5"
+                  className="w-full h-auto object-contain bg-white/5 max-h-[70vh]"
                   loading="eager"
                   decoding="sync"
                   fetchPriority="high"
