@@ -123,7 +123,7 @@ export default function ContactSection() {
                   Submitting...
                 </>
               ) : (
-                "Get Brochure & Schedule Visit"
+                "Brochure & Schedule Visit"
               )}
             </Button>
 
