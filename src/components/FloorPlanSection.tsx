@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import nightshotImg from "../Assets/front_nightshot.jpg";
+import nightshotVideo from "../Assets/Night_Shot.mp4";
+import mgMallDayVideo from "../Assets/MG mall day.mp4";
 import patternBg from "../Assets/Pattern copy.png";
 import {
   allFloorPlanImageSources,
@@ -16,11 +17,14 @@ const floors = [
   { name: "Roof Top", area: "5,876.88", dimensions: "105'-10\" × 55'-6\"", height: "—" },
 ];
 
+const heroVideos = [nightshotVideo, mgMallDayVideo];
+
 export default function FloorPlanSection() {
   const [activeFloorIndex, setActiveFloorIndex] = useState(0);
   const [viewMode, setViewMode] = useState<"front" | "top">("front");
   const [isPreloaded, setIsPreloaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeHeroVideoIndex, setActiveHeroVideoIndex] = useState(0);
 
   useEffect(() => {
     const updateIsMobile = () => {
@@ -37,7 +41,7 @@ export default function FloorPlanSection() {
     }
     const intervalId = setInterval(() => {
       setActiveFloorIndex((prev) => (prev + 1) % floors.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(intervalId);
   }, [isMobile]);
 
@@ -112,7 +116,7 @@ export default function FloorPlanSection() {
           <p className="text-2xl text-white/100">Total Built-up Area: 24,710.15 sq ft</p>
           <p className="text-2xl text-white/100">Usable Commercial Area: 18,833 sq ft</p>
 
-          {/* Scroll-reveal image */}
+          {/* Scroll-reveal video */}
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -123,10 +127,18 @@ export default function FloorPlanSection() {
             }}
             className="mt-8 mb-6 overflow-hidden"
           >
-            <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl h-auto md:h-[420px]">
-              <img
-                src={nightshotImg}
-                alt="Mall Interior"
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl aspect-[16/9] max-h-[520px]">
+              <video
+                key={activeHeroVideoIndex}
+                src={heroVideos[activeHeroVideoIndex]}
+                autoPlay
+                muted
+                playsInline
+                onEnded={() =>
+                  setActiveHeroVideoIndex(
+                    (prevIndex) => (prevIndex + 1) % heroVideos.length,
+                  )
+                }
                 className="block w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />

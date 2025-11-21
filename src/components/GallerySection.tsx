@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import photo4 from "@/Assets/A_4 - Photo.jpg";
 import photo7 from "@/Assets/A_7 - Photo.jpg";
 import photo8 from "@/Assets/A_8 - Photo.jpg";
 import photo9 from "@/Assets/A_9 - Photo.jpg";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+const GALLERY_CARD_HEIGHT = "h-[360px] sm:h-[440px] lg:h-[520px]";
 
 const galleryItems = [
   {
@@ -80,6 +91,28 @@ function ImageCard({
 }
 
 export default function GallerySection() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const handleSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+
+    handleSelect();
+    api.on("select", handleSelect);
+    api.on("reInit", handleSelect);
+
+    return () => {
+      api.off("select", handleSelect);
+      api.off("reInit", handleSelect);
+    };
+  }, [api]);
+
+  const totalSlides = galleryItems.length;
+
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -105,35 +138,67 @@ export default function GallerySection() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-12">
-          <ImageCard
-            item={galleryItems[0]}
-            aspectClass="aspect-[5/4]"
-            layoutClass="lg:col-span-7 sm:col-span-2"
-          />
+        <Carousel
+          className="relative"
+          opts={{ loop: true, align: "start" }}
+          setApi={setApi}
+        >
+          <CarouselContent className="pl-0">
+            {galleryItems.map((item, index) => (
+              <CarouselItem
+                key={item.alt}
+                className="basis-full"
+              >
+                <ImageCard
+                  item={item}
+                  aspectClass={`${GALLERY_CARD_HEIGHT}`}
+                  layoutClass=""
+                  delay={0.05 * index}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
 
-          <div className="space-y-6 lg:col-span-5">
-            <ImageCard
-              item={galleryItems[1]}
-              aspectClass="aspect-[4/3]"
-              layoutClass=""
-              delay={0.1}
+          <CarouselPrevious className="hidden lg:flex border-white/30 text-white hover:bg-white/10" />
+          <CarouselNext className="hidden lg:flex border-white/30 text-white hover:bg-white/10" />
+        </Carousel>
+
+        <div className="mt-8 flex items-center justify-center gap-4 lg:hidden">
+          <button
+            type="button"
+            onClick={() => api?.scrollPrev()}
+            className="rounded-full border border-white/30 bg-black/40 px-4 py-2 text-sm font-semibold text-white hover:bg-black/60 transition"
+            aria-label="Previous image"
+          >
+            Prev
+          </button>
+          <span className="text-sm font-semibold text-white/70">
+            {currentSlide + 1} / {totalSlides}
+          </span>
+          <button
+            type="button"
+            onClick={() => api?.scrollNext()}
+            className="rounded-full border border-white/30 bg-black/40 px-4 py-2 text-sm font-semibold text-white hover:bg-black/60 transition"
+            aria-label="Next image"
+          >
+            Next
+          </button>
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          {galleryItems.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              aria-label={`Go to slide ${index + 1}`}
+              onClick={() => api?.scrollTo(index)}
+              className={`h-2 w-6 rounded-full transition-all ${
+                currentSlide === index
+                  ? "bg-[var(--brand-gold)]"
+                  : "bg-white/30 hover:bg-white/50"
+              }`}
             />
-            <div className="grid gap-6 sm:grid-cols-2">
-              <ImageCard
-                item={galleryItems[2]}
-                aspectClass="aspect-square"
-                layoutClass=""
-                delay={0.16}
-              />
-              <ImageCard
-                item={galleryItems[3]}
-                aspectClass="aspect-square"
-                layoutClass=""
-                delay={0.22}
-              />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
