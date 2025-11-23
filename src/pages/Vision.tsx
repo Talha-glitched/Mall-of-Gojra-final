@@ -6,7 +6,7 @@ import { ArrowLeft, Sparkles, Target, TrendingUp, Trophy, Phone, MessageCircle }
 import { Link } from "react-router";
 import { Helmet } from "react-helmet-async";
 import { getCanonicalUrl, siteMetadata } from "@/seo/metadata";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -30,6 +30,11 @@ export default function VisionPage() {
   const pageDescription =
     "Understand the mission, values, and long-term ambition powering Mall of Gojra's metro-grade commercial development.";
   const canonicalUrl = getCanonicalUrl("/vision");
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   // Team members data
   const teamMembers = [
@@ -114,7 +119,7 @@ export default function VisionPage() {
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
                   </Button>
                 </Link>
-                <Button 
+                <Button
                   onClick={() => setIsTeamDialogOpen(true)}
                   className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)]"
                 >

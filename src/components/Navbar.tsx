@@ -37,7 +37,22 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             className="flex items-center gap-3"
           >
-            <Link to="/" className="inline-flex items-center gap-3 sm:gap-4">
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-3 sm:gap-4"
+              onClick={(e) => {
+                // If already on home page, prevent navigation and scroll to top
+                if (location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  // If on different page, navigate then scroll to top
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }, 100);
+                }
+              }}
+            >
               <img
                 src={buildingMark}
                 alt="Mall of Gojra Icon"
@@ -80,6 +95,12 @@ export default function Navbar() {
             <Link
               to="/vision"
               className="text-xs text-white hover:text-[var(--brand-gold)] transition-colors"
+              onClick={() => {
+                // Scroll to top after navigation
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 100);
+              }}
             >
               Vision
             </Link>
@@ -134,7 +155,13 @@ export default function Navbar() {
             <Link
               to="/vision"
               className="block w-full text-left text-xs text-white hover:text-[var(--brand-gold)] transition-colors py-2"
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                // Scroll to top after navigation
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 100);
+              }}
             >
               Vision
             </Link>
