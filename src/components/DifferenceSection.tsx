@@ -76,7 +76,7 @@ export default function DifferenceSection() {
               <h3 className="text-lg font-bold text-white">UAE-Based Family</h3>
               <p className="text-white/70">Developed by a business family rooted in Gojra</p>
               <div className="pt-2">
-                <Button 
+                <Button
                   onClick={() => setIsTeamDialogOpen(true)}
                   className="bg-[var(--brand-gold)] text-black font-semibold hover:bg-[rgba(var(--brand-gold-rgb),0.9)] text-sm px-4 py-2"
                 >

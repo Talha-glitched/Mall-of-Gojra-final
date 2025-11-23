@@ -37,8 +37,8 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             className="flex items-center gap-3"
           >
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="inline-flex items-center gap-3 sm:gap-4"
               onClick={(e) => {
                 // If already on home page, prevent navigation and scroll to top
