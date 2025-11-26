@@ -67,7 +67,7 @@ function ImageCard({
         <img
           src={item.src}
           alt={item.alt}
-          className="h-auto w-full max-h-[70vh] md:max-h-none md:h-full object-contain md:object-cover"
+          className="h-auto w-full max-h-[70vh] md:max-h-full md:h-full object-contain"
           loading="lazy"
           decoding="async"
         />

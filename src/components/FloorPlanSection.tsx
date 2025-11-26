@@ -125,24 +125,21 @@ export default function FloorPlanSection() {
               duration: 0.8,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
-            className="mt-8 mb-6 overflow-hidden"
+            className="mt-8 mb-6"
           >
-            <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl aspect-[16/9] max-h-[520px] flex items-center justify-center">
-              <video
-                key={activeHeroVideoIndex}
-                src={heroVideos[activeHeroVideoIndex]}
-                autoPlay
-                muted
-                playsInline
-                onEnded={() =>
-                  setActiveHeroVideoIndex(
-                    (prevIndex) => (prevIndex + 1) % heroVideos.length,
-                  )
-                }
-                className="block w-full h-full object-contain md:object-cover max-h-[80vh] md:max-h-none"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-            </div>
+            <video
+              key={activeHeroVideoIndex}
+              src={heroVideos[activeHeroVideoIndex]}
+              autoPlay
+              muted
+              playsInline
+              onEnded={() =>
+                setActiveHeroVideoIndex(
+                  (prevIndex) => (prevIndex + 1) % heroVideos.length,
+                )
+              }
+              className="block w-full max-w-4xl mx-auto object-contain max-h-[60vh] sm:max-h-[450px]"
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
