@@ -17,7 +17,7 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 import { ArrowRight, Loader2, Mail, UserX } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { Helmet } from "react-helmet-async";
 import { getCanonicalUrl, siteMetadata } from "@/seo/metadata";
 
@@ -28,12 +28,17 @@ interface AuthProps {
 function Auth({ redirectAfterAuth }: AuthProps = {}) {
   const { isLoading: authLoading, isAuthenticated, signIn } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [step, setStep] = useState<"signIn" | { email: string }>("signIn");
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const pageTitle = `Secure Access | ${siteMetadata.siteName}`;
   const canonicalUrl = getCanonicalUrl("/auth");
+  
+  // Check if this is an admin login request
+  const redirectParam = searchParams.get("redirect");
+  const isAdminLogin = redirectAfterAuth === "/admin" || redirectParam === "/admin";
 
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
@@ -100,6 +105,28 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
     }
   };
 
+  const handleAdminLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    try {
+      const formData = new FormData(event.currentTarget);
+      await signIn("admin", formData);
+      // Wait a moment for state to update, then navigate
+      setTimeout(() => {
+        navigate("/admin");
+      }, 100);
+    } catch (error) {
+      console.error("Admin login error:", error);
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Invalid username or password. Please try again.",
+      );
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -129,7 +156,88 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
       <div className="flex-1 flex items-center justify-center">
         <div className="flex items-center justify-center h-full flex-col">
         <Card className="min-w-[350px] pb-0 border shadow-md">
-          {step === "signIn" ? (
+          {isAdminLogin ? (
+            <>
+              <CardHeader className="text-center">
+                <div className="flex justify-center">
+                  <img
+                    src="https://harmless-tapir-303.convex.cloud/api/storage/3ed0ac66-f978-4944-ae20-157f8694aa24"
+                    alt="Mall of Gojra"
+                    className="h-16 rounded-lg mb-4 mt-4 cursor-pointer"
+                    onClick={() => navigate("/")}
+                  />
+                </div>
+                <CardTitle className="text-xl">Admin Login</CardTitle>
+                <CardDescription>
+                  Enter your admin credentials to access the admin panel
+                </CardDescription>
+              </CardHeader>
+              <form onSubmit={handleAdminLogin}>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <label htmlFor="username" className="text-sm font-medium">
+                        Username
+                      </label>
+                      <Input
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        required
+                        disabled={isLoading}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="password" className="text-sm font-medium">
+                        Password
+                      </label>
+                      <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Enter password"
+                        required
+                        disabled={isLoading}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+                  {error && (
+                    <p className="mt-4 text-sm text-red-500">{error}</p>
+                  )}
+                </CardContent>
+                <CardFooter className="flex-col gap-2">
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Signing in...
+                      </>
+                    ) : (
+                      <>
+                        Sign In
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => navigate("/")}
+                    disabled={isLoading}
+                    className="w-full"
+                  >
+                    Back to Home
+                  </Button>
+                </CardFooter>
+              </form>
+            </>
+          ) : step === "signIn" ? (
             <>
               <CardHeader className="text-center">
               <div className="flex justify-center">

@@ -92,7 +92,7 @@ function verifyToken(token?: string) {
   if (!token) return null;
   try {
     const secret = process.env.JWT_SECRET || "dev-secret";
-    return jwt.verify(token, secret) as { userId: string };
+    return jwt.verify(token, secret) as { userId: string; isAdmin?: boolean };
   } catch {
     return null;
   }
@@ -133,6 +133,31 @@ app.post("/api/auth/email/verify", async (req, res) => {
   res.json({ token, user: { id: user._id, email: user.email, provider: user.provider } });
 });
 
+app.post("/api/auth/admin", async (req, res) => {
+  try {
+    const { username, password } = req.body as { username?: string; password?: string };
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password are required" });
+    }
+    // Check admin credentials
+    if (username === "mogadmin" && password === "mog@admin") {
+      // Create or find admin user
+      let user = await User.findOne({ email: "admin@mog.local", provider: "admin" });
+      if (!user) {
+        user = await User.create({ email: "admin@mog.local", provider: "admin" });
+      }
+      const token = signToken({ userId: String(user._id), isAdmin: true });
+      res.json({ token, user: { id: user._id, email: user.email, provider: user.provider, isAdmin: true } });
+    } else {
+      res.status(401).json({ error: "Invalid username or password" });
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Admin login error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/api/auth/me", async (req, res) => {
   const header = req.headers.authorization;
   const token = header?.startsWith("Bearer ") ? header.slice(7) : undefined;
@@ -140,7 +165,8 @@ app.get("/api/auth/me", async (req, res) => {
   if (!decoded) return res.status(401).json({ error: "Unauthorized" });
   const user = await User.findById(decoded.userId);
   if (!user) return res.status(401).json({ error: "Unauthorized" });
-  res.json({ id: user._id, email: user.email, provider: user.provider });
+  const isAdmin = user.provider === "admin" || (decoded as { isAdmin?: boolean }).isAdmin;
+  res.json({ id: user._id, email: user.email, provider: user.provider, isAdmin });
 });
 
 app.listen(PORT, () => {

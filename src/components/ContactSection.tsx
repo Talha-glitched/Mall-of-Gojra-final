@@ -2,13 +2,24 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Download } from "lucide-react";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const submitForm = useMutation(api.formSubmissions.submitForm);
+
+  // Check localStorage on mount
+  useEffect(() => {
+    const submitted = localStorage.getItem("formSubmitted");
+    if (submitted === "true") {
+      setHasSubmitted(true);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,10 +34,14 @@ export default function ContactSection() {
     };
 
     try {
-      await axios.post("/api/leads", data);
-      toast.success("Thank you! We'll reach out within 24 hours.", {
-        description: "Check your inbox for the brochure & floor plan.",
+      await submitForm(data);
+      toast.success("Thank you! Your form has been submitted.", {
+        description: "You can now download the brochure below.",
       });
+      setHasSubmitted(true);
+      // Store submission status in localStorage
+      localStorage.setItem("formSubmitted", "true");
+      localStorage.setItem("submittedEmail", data.email);
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error("Lead submission failed", error);
@@ -34,6 +49,16 @@ export default function ContactSection() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleDownloadBrochure = () => {
+    const link = document.createElement("a");
+    link.href = "/MOG Brochure-Web copy.pdf";
+    link.download = "MOG-Brochure.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success("Brochure download started!");
   };
 
   return (
@@ -114,21 +139,42 @@ export default function ContactSection() {
 
             <Button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-[var(--brand-gold)] text-black font-bold text-lg py-6 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] cursor-pointer"
+              disabled={isSubmitting || hasSubmitted}
+              className="w-full bg-[var(--brand-gold)] text-black font-bold text-lg py-6 hover:bg-[rgba(var(--brand-gold-rgb),0.9)] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                   Submitting...
                 </>
+              ) : hasSubmitted ? (
+                "Form Submitted ✓"
               ) : (
-                "Brochure & Floor Plans"
+                "Submit to Get Brochure"
               )}
             </Button>
 
+            {hasSubmitted && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4"
+              >
+                <Button
+                  type="button"
+                  onClick={handleDownloadBrochure}
+                  className="w-full bg-white/10 border border-white/20 text-white font-bold text-lg py-6 hover:bg-white/20 cursor-pointer"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download Brochure
+                </Button>
+              </motion.div>
+            )}
+
             <p className="text-sm text-white/50 text-center">
-              📝 You'll receive: Brochure • Floor Plan • Site Tour Options
+              {hasSubmitted
+                ? "✅ Thank you for your interest! Download the brochure above."
+                : "📝 Submit the form to download: Brochure • Floor Plan • Site Tour Options"}
             </p>
           </form>
         </motion.div>
