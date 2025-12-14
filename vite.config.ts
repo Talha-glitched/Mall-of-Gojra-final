@@ -19,4 +19,6 @@ export default defineConfig({
       },
     },
   },
+  // Ensure public files (like _redirects) are copied to dist
+  publicDir: "public",
 });
