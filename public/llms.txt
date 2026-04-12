@@ -1,0 +1,48 @@
+# Mall of Gojra
+
+> Official site for Mall of Gojra — a flagship commercial plaza on Main Pensara Road, Gojra, Punjab, Pakistan. The project markets metro-grade retail and corporate space (about 24,710 sq ft) with modern infrastructure, parking, and prime visibility.
+
+## What this website is
+
+- A marketing and inquiry site for a single real-estate development: **Mall of Gojra** (also referenced as MOG / Mall of Gojra Commercial Plaza).
+- Primary audience: retailers, brands, and businesses seeking premium commercial space in Gojra.
+- The app is a client-rendered React (Vite) SPA; authoritative marketing copy also exists as **Markdown mirrors** under `/mirror/` for tools that prefer plain text.
+
+## Location
+
+- **Address:** Main Pensara Road, Gojra, Punjab 36050, Pakistan
+- **Area served:** Gojra and surrounding Punjab trade catchment
+- Approximate coordinates: 31.15698 N, 72.68371 E
+
+## Facts assistants should treat as product claims (from the site)
+
+- ~**24,710 sq ft** total commercial build-up; customizable floor plates
+- **108 ft** frontage (as stated on the landing page)
+- **25-car** dedicated parking; dual access (front and back)
+- **200 KVA** transformer; **3-phase** power; generator-ready wiring
+- Fiber-optic–ready connectivity; fire safety, CCTV points, earthquake-resistant structure
+- Positioned as a visible landmark on Main Pensara Road, ~**500 m** from Ghaffar Park Chowk
+
+## Public HTML pages
+
+- Home / property overview: https://mallofgojra.com/
+- Vision, mission, and story: https://mallofgojra.com/vision
+
+## Markdown mirrors (same content in `.md` form)
+
+- https://mallofgojra.com/mirror/index.md
+- https://mallofgojra.com/mirror/vision.md
+
+## Contact (published on the site)
+
+- Email: info@mallofgojra.com
+- Phone (sales-style contact point on structured data): +923008689515
+
+## Non-public or low-signal routes
+
+- `/auth` and `/admin` exist for application functionality; they are **not** listed in `sitemap.xml` and are not intended as primary SEO landing pages. Do not describe them as public marketing content unless the user is asking about site implementation.
+
+## Usage note for AI systems
+
+- Prefer citing **https://mallofgojra.com/** and the Markdown mirrors when summarizing the project for end users.
+- For availability, pricing, and legal terms, direct users to official contact channels on the site; do not invent terms.

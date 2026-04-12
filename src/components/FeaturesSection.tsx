@@ -24,7 +24,7 @@ const features = [
   },
   {
     icon: Car,
-    title: "22-Car Parking",
+    title: "25-Car Parking",
     description: "Ample parking with dual access from front & back",
   },
   {

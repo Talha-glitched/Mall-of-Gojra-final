@@ -17,9 +17,9 @@ export default function DifferenceSection() {
   const teamMembers = [
     {
       name: "Rana Nadeem",
-      phone: "+97155644156",
-      phoneFormatted: "+97155644156",
-      whatsapp: "97155644156",
+      phone: "+971556444156",
+      phoneFormatted: "+971556444156",
+      whatsapp: "971556444156",
     },
     {
       name: "Rana Masuood",

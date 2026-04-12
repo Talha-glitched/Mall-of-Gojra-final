@@ -108,7 +108,7 @@ export const buildLandingStructuredData = () => ({
     },
     {
       "@type": "LocationFeatureSpecification",
-      name: "22-car dedicated parking",
+      name: "25-car dedicated parking",
       value: true,
     },
     {

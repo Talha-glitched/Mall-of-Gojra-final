@@ -173,7 +173,7 @@ export default function HeroSection() {
           </div>
           <div className="h-12 w-px bg-white/20 hidden sm:block" />
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-gold)]">22</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-gold)]">25</div>
             <div className="text-xs sm:text-sm text-white/60">Car Parking</div>
 
           </div>

@@ -7,7 +7,7 @@ const infrastructure = [
   "Attractive facade with display windows",
   "HVAC-compatible setup",
   "Dedicated loading area for deliveries",
-  "22-car parking capacity",
+  "25-car parking capacity",
   "Wheelchair ramp enabled",
 ];
 
