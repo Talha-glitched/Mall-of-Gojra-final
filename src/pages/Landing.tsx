@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -11,14 +12,27 @@ import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
+import { PlayCircle } from "lucide-react";
 import {
   buildLandingStructuredData,
   getCanonicalUrl,
   siteMetadata,
 } from "@/seo/metadata";
 import { allFloorPlanImageSources } from "@/data/floor-plan-images";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+const youtubeVideoId = "gSfk5tbBYUI";
+const youtubeEmbedUrl = `https://www.youtube-nocookie.com/embed/${youtubeVideoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
 
 export default function Landing() {
+  const [isVideoOpen, setIsVideoOpen] = useState(true);
+
   const pageTitle = `${siteMetadata.siteName} | ${siteMetadata.brandTagline}`;
   const pageDescription = siteMetadata.description;
   const canonicalUrl = getCanonicalUrl("/");
@@ -165,6 +179,50 @@ export default function Landing() {
       </main>
       <Footer />
       <WhatsAppButton />
+
+      <button
+        type="button"
+        onClick={() => setIsVideoOpen(true)}
+        className="fixed bottom-6 left-4 z-50 inline-flex min-h-12 max-w-[calc(100vw-2rem)] items-center gap-3 rounded-full border border-white/15 bg-white px-4 py-3 text-sm font-semibold text-black shadow-2xl shadow-black/40 transition hover:-translate-y-0.5 hover:bg-[var(--brand-gold)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-gold)] focus:ring-offset-2 focus:ring-offset-black sm:left-6 sm:min-h-14 sm:px-5"
+        aria-label="Watch the Mall of Gojra video"
+      >
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-[var(--brand-gold)]">
+          <PlayCircle className="h-5 w-5" aria-hidden="true" />
+        </span>
+        <span className="whitespace-nowrap">Watch Video</span>
+      </button>
+
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="w-[calc(100vw-1.5rem)] gap-0 overflow-hidden border-white/10 bg-[#050505] p-0 text-white shadow-[0_30px_100px_rgba(0,0,0,0.75)] sm:max-w-5xl">
+          <DialogHeader className="border-b border-white/10 px-4 py-4 pr-12 text-left sm:px-6">
+            <DialogTitle className="text-lg font-bold text-white sm:text-xl">
+              Mall of Gojra Video Tour
+            </DialogTitle>
+            <DialogDescription className="sr-only">
+              Welcome to Mall of Gojra — here is a quick video introduction.
+            </DialogDescription>
+            <p className="text-sm leading-relaxed text-white/70">
+              See the frontage, location, and retail space highlights in a quick video introduction.
+            </p>
+          </DialogHeader>
+          <div className="relative aspect-video w-full overflow-hidden bg-black">
+            {isVideoOpen && (
+              <iframe
+                width="1280"
+                height="720"
+                src={youtubeEmbedUrl}
+                title="Mall of Gojra video tour"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                loading="lazy"
+                className="absolute inset-0 h-full w-full"
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
