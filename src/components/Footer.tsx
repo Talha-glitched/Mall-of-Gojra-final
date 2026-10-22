@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import buildingMark from "@/Assets/Building Logo copy.png";
+import egsLogo from "@/Assets/EGS-Logo.png";
 
 export default function Footer() {
   return (
@@ -54,11 +55,24 @@ export default function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="pt-8 border-t border-white/10 text-center"
+          className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left"
         >
           <p className="text-white/50 text-sm">
             © {new Date().getFullYear()} Mall of Gojra. All rights reserved. Built with care, delivered with pride.
           </p>
+          <a
+            href="https://exhibitgraphicsign.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors group"
+          >
+            <span>Brought to you by</span>
+            <img
+              src={egsLogo}
+              alt="Exhibit Graphic Sign"
+              className="h-8 w-auto object-contain opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all"
+            />
+          </a>
         </motion.div>
       </div>
     </footer>
